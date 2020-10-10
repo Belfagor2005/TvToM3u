@@ -4,6 +4,6 @@ TvToM3uPanel by Lululla
 
 Enigma2 project
 
-TvToM3uPanel convert bouet list enigma2 box to .m3u files
+TvToM3uPanel convert bouquet list enigma2 box to .m3u files
 
 No Depository Links on server
