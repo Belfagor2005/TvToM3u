@@ -1,0 +1,10 @@
+Package: enigma2-plugin-extensions-tvtom3upanel
+Version: 1.4
+Section: enigma2
+Priority: optional
+Architecture: all
+Maintainer: @lululla
+Description: TvToM3uPanel Plugin
+Depends: python-html
+Homepage: http://www.corvoboys.com
+OE: 2.0
