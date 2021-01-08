@@ -6,5 +6,7 @@ Architecture: all
 Maintainer: @lululla
 Description: TvToM3uPanel Plugin
 Depends: python-html
+Source: /
 Homepage: http://www.corvoboys.com
 OE: 2.0
+License: *

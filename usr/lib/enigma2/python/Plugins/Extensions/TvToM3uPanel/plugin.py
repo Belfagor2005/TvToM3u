@@ -1,3 +1,15 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+'''
+****************************************
+*        coded by Lululla              *
+*             skin by MMark            *
+*             01/12/2020               *
+****************************************
+'''
+#Info http://t.me/tivustream
+# from __future__ import print_function
+from . import _
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.ActionMap import ActionMap
@@ -8,12 +20,18 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from enigma import *
-import sys, os, re, gettext, glob
-from enigma import getDesktop, addFont, eTimer, loadPNG
+import os
+import re
+import glob
+from enigma import getDesktop
+from enigma import addFont
+from enigma import eTimer
+from enigma import loadPNG
 from skin import loadSkin
 from os import path, listdir, remove, mkdir, chmod, sys
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE, fileExists, copyfile, pathExists
+from Tools.Directories import fileExists, pathExists
 global isDreamOS, new_bouquet, SKIN_PATH, HD
+
 Version        = '1.4'
 plugin_path    = os.path.dirname(sys.modules[__name__].__file__)
 DESKHEIGHT     = getDesktop(0).size().height()
@@ -26,10 +44,10 @@ new_bouquet    = tmp_bouquet + '/bouquets.tv'
 #================
 isDreamOS = False
 try:
-	from enigma import eMediaDatabase
-	isDreamOS = True
+    from enigma import eMediaDatabase
+    isDreamOS = True
 except:
-	isDreamOS = False
+    isDreamOS = False
 
 # SCREEN PATH SETTING
 if HD.width() > 1280:
@@ -44,15 +62,14 @@ else:
         SKIN_PATH = plugin_path + '/Skin/hd'
 
 def add_skin_font():
-	font_path = plugin_path + '/fonts/'
-	addFont(font_path + 'Roboto.ttf', 'cvfont', 100, 1)
+    font_path = plugin_path + '/fonts/'
+    addFont(font_path + 'Roboto.ttf', 'cvfont', 100, 1)
 
 class MenuListSelect(MenuList):
 
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if HD.width() > 1280:
-        # if HD_Res:
             self.l.setFont(0, gFont('Regular', 34))
             self.l.setItemHeight(50)
         else:
@@ -63,7 +80,6 @@ def lista_bouquet():
     iptv_list = []
     f = open(new_bouquet, 'w')
     f.write('NAME Bouquets (TV)\n')
-
     for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
         usbq = open(iptv_file, 'r').read()
         usbq_lines = usbq.strip().lower()
@@ -73,7 +89,6 @@ def lista_bouquet():
             f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' +'\n')
             print('iptv_file ', iptv_file)
             os.system('cp -rf /etc/enigma2/'+ str(strep_bq) + ' ' + tmp_bouquet )
-
     for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
         usbq = open(iptv_file, 'r').read()
         usbq_lines = usbq.strip().lower()
@@ -83,7 +98,6 @@ def lista_bouquet():
             f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' +'\n')
             print('iptv_file 2 ', iptv_file)
             os.system('cp -rf /etc/enigma2/'+ str(strep_bq)  + ' ' + tmp_bouquet )
-
     f.close()
     if not iptv_list:
         return False
@@ -116,7 +130,6 @@ class ListSelect:
         except Exception as e:
             print(e)
             return
-
         ret = []
         while True:
             line = f.readline()
@@ -183,12 +196,10 @@ class TvToM3uPanel(Screen):
 
     def __init__(self, session):
         self.session = session
-
         skin = SKIN_PATH + '/TvToM3uPanel.xml'
         f = open(skin, 'r')
         self.skin = f.read()
         f.close()
-
         Screen.__init__(self, session)
         self.ListSelect = ListSelect()
         self['text'] = Label(_('Select List IPTV and convert to M3U in /tmp\nby Lululla\n\n     www.corvoboys.com'))
@@ -229,7 +240,6 @@ class TvToM3uPanel(Screen):
             res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT))
-
         else:
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 11), size=(20, 20), png=loadPNG(icon))) #png=loadPic(icon, 20, 20, 0, 0, 0, 1)))
             res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
@@ -243,21 +253,21 @@ class TvToM3uPanel(Screen):
         for dir, name, value in self.ListSelect.TvList():
                 self.jA.append(self.hauptListEntry(dir, name, value))
         self['MENU'].setList(self.jA)
+    '''
+    def OkSelect(self):
+        NewName = self['MENU'].getCurrent()[0][1]
+        NewDir = self['MENU'].getCurrent()[0][0]
+        self.list = []
+        for dir, name, value in self.ListSelect.TvList():
+            if dir == NewDir and name == NewName:
+                if value == '0':
+                    self.list.append((dir, name, '1'))
+            elif value == '1':
+                self.list.append((dir, name, '1'))
 
-    # def OkSelect(self):
-        # NewName = self['MENU'].getCurrent()[0][1]
-        # NewDir = self['MENU'].getCurrent()[0][0]
-        # self.list = []
-        # for dir, name, value in self.ListSelect.TvList():
-            # if dir == NewDir and name == NewName:
-                # if value == '0':
-                    # self.list.append((dir, name, '1'))
-            # elif value == '1':
-                # self.list.append((dir, name, '1'))
-
-        # self.Menu()
-        # self['MENU'].selectionEnabled(1)
-
+        self.Menu()
+        self['MENU'].selectionEnabled(1)
+    '''
     def keyGreen(self):
         url = self['MENU'].getCurrent()[0][1]
         if url == -1 or None:
@@ -265,8 +275,10 @@ class TvToM3uPanel(Screen):
         else:
             try:
                 for dir, name, value in self.ListSelect.TvList():
-                    if url == name : # problem or url in name ? ?      or if not name.find(url) != -1:
-
+                    if url == name : 
+                        '''
+                        # problem or url in name ? ?      or if not name.find(url) != -1:
+                        '''
                         print('dir : ', dir)
                         print('name: ', name)
                         print('value: ', value)
@@ -277,14 +289,11 @@ class TvToM3uPanel(Screen):
                         print('In content =', content)
                         # regexcat = '#SERVICE.*?:http(.*?)\\n#DESCRIPTION(.*?)\\n'
                         regexcat = '#SERVICE.*?0:(.*?)\\n#DESCRIPTION(.*?)\\n'
-
                         match = re.compile(regexcat, re.DOTALL).findall(content)
                         print('In match =', match)
-
                         nameM3u = name.replace(' ', '') # for FILE_M3U
                         nameM3u = nameM3u.lower()
                         print('In nameM3u =', nameM3u)
-
                         FILE_M3U = '/tmp/tvtom3u/%s.m3u' % nameM3u
                         WriteBouquet = open(FILE_M3U, 'w')
                         WriteBouquet.write('#EXTM3U\n')
@@ -306,11 +315,8 @@ class TvToM3uPanel(Screen):
                                                n1 = url.find("rtmp",0)
                                                url = url[n1:]
                                                url= url.replace('%3a',':')
-
                                         n2 = url.rfind(":",0)
                                         url = url[:n2]
-
-
                                         print('url: ', url)
                                         print('namex: ', name)
                                     except:
