@@ -40,7 +40,7 @@ SKIN_PATH      = plugin_path
 iconpic        = plugin_path+ '/plugin.png'
 tmp_bouquet    = plugin_path + '/tmp'
 new_bouquet    = tmp_bouquet + '/bouquets.tv'
-
+title_plug = '..:: Enigma2 Iptv Converter Bouquet V. %s ::..' % Version
 #================
 isDreamOS = False
 try:
@@ -351,4 +351,4 @@ def Main(session, **kwargs):
     session.open(TvToM3uPanel)
 
 def Plugins(**kwargs):
-    return [PluginDescriptor(name='TvToM3u', description='Enigma2 Iptv Converter Bouquet', icon= plugin_path + '/plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=Main)]
+    return [PluginDescriptor(name='TvToM3u', description=title_plug, icon= plugin_path + '/plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=Main)]
