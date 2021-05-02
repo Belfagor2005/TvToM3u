@@ -7,18 +7,18 @@ PluginLanguageDomain = 'TvToM3uPanel'
 PluginLanguagePath = plugin_path + 'locale'
 try:
     from enigma import eMediaDatabase
-    isDreamOS = True
+    mDreamOs = True
 except:
-    isDreamOS = False
+    mDreamOs = False
 
 def localeInit():
-    if isDreamOS:
+    if mDreamOs:
         lang = language.getLanguage()[:2]
         os_environ['LANGUAGE'] = lang
     gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
 
 
-if isDreamOS:
+if mDreamOs:
     _ = lambda txt: (gettext.dgettext(PluginLanguageDomain, txt) if txt else '')
     localeInit()
     language.addCallback(localeInit)
@@ -28,7 +28,7 @@ else:
         if gettext.dgettext(PluginLanguageDomain, txt):
             return gettext.dgettext(PluginLanguageDomain, txt)
         else:
-            print '[' + PluginLanguageDomain + '] fallback to default translation for ' + txt
+            print('[' + PluginLanguageDomain + '] fallback to default translation for ' + txt)
             return gettext.gettext(txt)
 
 

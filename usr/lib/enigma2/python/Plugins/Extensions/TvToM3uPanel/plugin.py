@@ -4,7 +4,7 @@
 ****************************************
 *        coded by Lululla              *
 *             skin by MMark            *
-*             01/12/2020               *
+*             01/05/2021               *
 ****************************************
 '''
 #Info http://t.me/tivustream
@@ -30,7 +30,7 @@ from enigma import loadPNG
 from skin import loadSkin
 from os import path, listdir, remove, mkdir, chmod, sys
 from Tools.Directories import fileExists, pathExists
-global isDreamOS, new_bouquet, SKIN_PATH, HD
+global mDreamOs, new_bouquet, SKIN_PATH, HD
 
 Version        = '1.4'
 plugin_path    = os.path.dirname(sys.modules[__name__].__file__)
@@ -42,21 +42,21 @@ tmp_bouquet    = plugin_path + '/tmp'
 new_bouquet    = tmp_bouquet + '/bouquets.tv'
 title_plug = '..:: Enigma2 Iptv Converter Bouquet V. %s ::..' % Version
 #================
-isDreamOS = False
+mDreamOs = False
 try:
     from enigma import eMediaDatabase
-    isDreamOS = True
+    mDreamOs = True
 except:
-    isDreamOS = False
+    mDreamOs = False
 
 # SCREEN PATH SETTING
 if HD.width() > 1280:
-    if isDreamOS:
+    if mDreamOs:
         SKIN_PATH = plugin_path + '/Skin/fhd/dreamOs'
     else:
         SKIN_PATH = plugin_path + '/Skin/fhd'
 else:
-    if isDreamOS:
+    if mDreamOs:
         SKIN_PATH = plugin_path + '/Skin/hd/dreamOs'
     else:
         SKIN_PATH = plugin_path + '/Skin/hd'
