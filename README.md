@@ -1,6 +1,6 @@
 TvToM3uPanel by Lululla
 
-<img src="https://github.com/Belfagor2005/TvToM3uPanel/blob/main/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/plugin.png">
+<img src="https://github.com/Belfagor2005/TvToM3u/blob/main/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/plugin.png">
 
 Enigma2 project
 
