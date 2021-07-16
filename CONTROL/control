@@ -1,11 +1,11 @@
 Package: enigma2-plugin-extensions-tvtom3u
-Version: 1.5
+Version: 1.6
 Section: enigma2
 Priority: optional
 Architecture: all
 Maintainer: @lululla
 Description: TvToM3u Plugin
-Depends: python-html
+Depends: /
 Source: /
 Homepage: http://www.corvoboys.com
 OE: 2.0

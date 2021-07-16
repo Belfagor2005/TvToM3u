@@ -4,7 +4,7 @@
 ****************************************
 *        coded by Lululla              *
 *             skin by MMark            *
-*             01/05/2021               *
+*             16/07/2021               *
 ****************************************
 '''
 #Info http://t.me/tivustream
@@ -32,11 +32,11 @@ from os import path, listdir, remove, mkdir, chmod, sys
 from Tools.Directories import fileExists, pathExists
 global mDreamOs, new_bouquet, HD
 
-Version        = '1.5'
+Version        = '1.6'
 plugin_path    = os.path.dirname(sys.modules[__name__].__file__)
 DESKHEIGHT     = getDesktop(0).size().height()
 HD             = getDesktop(0).size()
-# SKIN_PATH      = plugin_path
+# skin_m3up      = plugin_path
 res_plugin_path=plugin_path + '/Skin/'
 iconpic        = plugin_path+ '/plugin.png'
 tmp_bouquet    = plugin_path + '/tmp'
@@ -50,33 +50,32 @@ try:
 except:
     mDreamOs = False
 
-# SCREEN PATH SETTING
-# if HD.width() > 1280:
-    # if mDreamOs:
-        # SKIN_PATH = plugin_path + '/Skin/fhd/dreamOs'
-    # else:
-        # SKIN_PATH = plugin_path + '/Skin/fhd'
-# else:
-    # if mDreamOs:
-        # SKIN_PATH = plugin_path + '/Skin/hd/dreamOs'
-    # else:
-        # SKIN_PATH = plugin_path + '/Skin/hd'
-
-
 if HD.width() > 1280:
-    SKIN_PATH=res_plugin_path + 'fhd/'
+    skin_m3up=res_plugin_path + 'fhd/'
 else:
-    SKIN_PATH=res_plugin_path + 'hd/'
+    skin_m3up=res_plugin_path + 'hd/'
 if mDreamOs:
-    SKIN_PATH=SKIN_PATH + 'dreamOs/'
-    
-    
+    skin_m3up=skin_m3up + 'dreamOs/'
+
 def add_skin_font():
     font_path = plugin_path + '/fonts/'
     addFont(font_path + 'Roboto.ttf', 'cvfont', 100, 1)
 
-class MenuListSelect(MenuList):
+if not os.path.exists('/tmp/tvtom3u/'):
+    try:
+        os.makedirs('/tmp/tvtom3u/')
+    except OSError as e:
+        print ('Error creating directory tvtom3u')
+global downloadfree
+downloadfree = "/tmp/tvtom3u/"
+try:
+    from Components.UsageConfig import defaultMoviePath
+    downloadfree = defaultMoviePath()
+except:
+    if os.path.exists("/usr/bin/apt-get"):
+        downloadfree = ('/media/hdd/movie/')
 
+class MenuListSelect(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         if HD.width() > 1280:
@@ -162,7 +161,6 @@ class ListSelect:
                         continue
                     tmp = fb.readline().strip()
                     print('tmp 1 :', tmp)
-
                     s1=fb.readline().strip()
                     items = []
                     item = tmp + "###" + s1
@@ -174,7 +172,7 @@ class ListSelect:
                         tmp = item.split("###")[0]
                         s1 = item.split("###")[1]
                         print('tmp2: ', tmp)
-                        print('s2: ', s1)
+                        print('s1: ', s1)
                     ########
                     if tmp[:6] == '#NAME ':
                         ret.append([filename, tmp[6:]])
@@ -182,7 +180,6 @@ class ListSelect:
                         ret.append([filename, filename])
                     fb.close()
         return ret
-
 
     def ReadBouquet(self, pwd):
         return self.readBouquetsList(pwd, 'bouquets.tv')
@@ -206,16 +203,16 @@ class TvToM3u(Screen):
 
     def __init__(self, session):
         self.session = session
-        skin = SKIN_PATH + 'TvToM3uPanel.xml'
+        skin = skin_m3up + 'TvToM3uPanel.xml'
         f = open(skin, 'r')
         self.skin = f.read()
         f.close()
         Screen.__init__(self, session)
         self.ListSelect = ListSelect()
-        self['text'] = Label(_('Select List IPTV and convert to M3U in /tmp\nby Lululla\n\n     www.corvoboys.com'))
+        self['text'] = Label(_('Select IPTV List and convert to M3U in\n%s\n     by Lululla\n\n     www.corvoboys.com')%downloadfree)
         self['version'] = Label(_('Version %s' % Version))
-        self['Key_Green'] = Label(_('Convert') + ' IPTV /tmp/tvtom3u' )
-        self['Key_Yellow'] = Label(_('Backup') + ' IPTV /tmp/tvtom3u')
+        self['Key_Green'] = Label(_('Convert') + ' IPTV %s' %downloadfree)
+        self['Key_Yellow'] = Label(_('Backup') + ' IPTV %s' %downloadfree)
         self['Key_Blue'] = Label(' ')
         self['Key_Red'] = Label(_('Exit'))
         self['MENU'] = MenuListSelect([])
@@ -244,7 +241,6 @@ class TvToM3u(Screen):
             name = name.split('   ')[0]
         except:
             pass
-
         if HD.width() > 1280:
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 15), size=(20, 20), png=loadPNG(icon))) #png=loadPic(icon, 20, 20, 0, 0, 0, 1)))
             res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
@@ -257,88 +253,46 @@ class TvToM3u(Screen):
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT))
         return res
 
-
     def Menu(self):
         self.jA = []
         for dir, name, value in self.ListSelect.TvList():
                 self.jA.append(self.hauptListEntry(dir, name, value))
         self['MENU'].setList(self.jA)
-    '''
-    def OkSelect(self):
-        NewName = self['MENU'].getCurrent()[0][1]
-        NewDir = self['MENU'].getCurrent()[0][0]
-        self.list = []
-        for dir, name, value in self.ListSelect.TvList():
-            if dir == NewDir and name == NewName:
-                if value == '0':
-                    self.list.append((dir, name, '1'))
-            elif value == '1':
-                self.list.append((dir, name, '1'))
 
-        self.Menu()
-        self['MENU'].selectionEnabled(1)
-    '''
     def keyGreen(self):
         url = self['MENU'].getCurrent()[0][1]
+        print('ok green', url)
         if url == -1 or None:
             return
         else:
             try:
                 for dir, name, value in self.ListSelect.TvList():
-                    if url == name : 
-                        '''
-                        # problem or url in name ? ?      or if not name.find(url) != -1:
-                        '''
-                        print('dir : ', dir)
-                        print('name: ', name)
-                        print('value: ', value)
+                    if url == name :
                         url = tmp_bouquet +'/%s' % dir
-                        print('url folder =', url)
                         f = open(url, 'r')
                         content = f.read()
-                        print('In content =', content)
-                        # regexcat = '#SERVICE.*?:http(.*?)\\n#DESCRIPTION(.*?)\\n'
-                        regexcat = '#SERVICE.*?0:(.*?)\\n#DESCRIPTION(.*?)\\n'
-                        match = re.compile(regexcat, re.DOTALL).findall(content)
-                        print('In match =', match)
+                        regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
+                        match = re.compile(regexcat).findall(content)
                         nameM3u = name.replace(' ', '') # for FILE_M3U
                         nameM3u = nameM3u.lower()
-                        print('In nameM3u =', nameM3u)
-                        FILE_M3U = '/tmp/tvtom3u/%s.m3u' % nameM3u
+                        FILE_M3U = '%s/%s.m3u' %(downloadfree,nameM3u)
                         WriteBouquet = open(FILE_M3U, 'w')
                         WriteBouquet.write('#EXTM3U\n')
-
                         for url, name in match:
-                            try:
-                                """
-                                n1 = url.find(":",0)
-                                url = url[:n1]
+                            n1 = url.find("http",0)
+                            if n1>-1:
+                                url = url[n1:]
                                 url= url.replace('%3a',':')
-                                url= 'http' + url
-                                """
-                                # url= 'http' + url
-                                n1 = url.find("http",0)
-                                if n1>-1:
-                                       url = url[n1:]
-                                       url= url.replace('%3a',':')
-                                else:
-                                       n1 = url.find("rtmp",0)
-                                       url = url[n1:]
-                                       url= url.replace('%3a',':')
-                                n2 = url.rfind(":",0)
-                                url = url[:n2]
-                                print('url: ', url)
-                                print('namex: ', name)
-                            except:
-                                pass
-                                pass
-                            WriteBouquet.write('#EXTINF:-1 tvg-ID="" tvg-name="%s" tvg-logo="" group-title="",%s\n' %(name,name) )
-                            print('rep1-url:', url)
-                            WriteBouquet.write('%s\n' % url)
+                                WriteBouquet.write('#EXTINF:-1 tvg-ID="" tvg-name="%s" tvg-logo="" group-title="",%s\n' %(name,name) )
+                            n3 = url.find("rtmp",0)
+                            if n3>-1 :
+                                url = url[n3:]
+                                url= url.replace('%3a',':')
+                                WriteBouquet.write('#EXTINF:-1 tvg-ID="" tvg-name="%s" tvg-logo="" group-title="",%s\n' %(name,name) )
+                            WriteBouquet.write('%s\n'%url)
                         f.close()
                         WriteBouquet.close()
                 self.mbox = self.session.open(MessageBox, _('Export Succes'), MessageBox.TYPE_INFO, timeout=8)
-
             except:
                 print('++++++++++ERROR CONVERT+++++++++++++')
 
@@ -346,18 +300,12 @@ class TvToM3u(Screen):
         iptv_to_save = lista_bouquet()
         if iptv_to_save:
             for iptv in iptv_to_save:
-                os.system('cp -rf '+ tmp_bouquet + '/' + iptv + ' ' + '/var/volatile/tmp/tvtom3u/' + iptv)
+                os.system('cp -rf '+ tmp_bouquet + '/' + iptv + ' ' + '/tmp/tvtom3u/' + iptv)
         self.mbox = self.session.open(MessageBox, _('Command Send - Check'), MessageBox.TYPE_INFO, timeout=8)
-
 
 def Main(session, **kwargs):
     add_skin_font()
-    if not os.path.exists('/var/volatile/tmp/tvtom3u/'):
-        try:
-            os.makedirs('/var/volatile/tmp/tvtom3u/')
-        except OSError as e:
-            print ('Error creating directory tvtom3u')
     session.open(TvToM3u)
 
 def Plugins(**kwargs):
-    return [PluginDescriptor(name='TvToM3u', description=title_plug, icon= plugin_path + '/plugin.png', where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=Main)]
+    return [PluginDescriptor(name='TvToM3u', description=title_plug, icon= iconpic, where=[PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_PLUGINMENU], fnc=Main)]
