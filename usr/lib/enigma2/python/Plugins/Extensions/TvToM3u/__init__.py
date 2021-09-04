@@ -32,5 +32,5 @@ else:
             return gettext.gettext(txt)
 
 
-    language.addCallback(localeInit())
+    language.addCallback(localeInit)
     
