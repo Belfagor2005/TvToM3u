@@ -30,7 +30,7 @@ from enigma import loadPNG
 from skin import loadSkin
 from os import path, listdir, remove, mkdir, chmod, sys
 from Tools.Directories import fileExists, pathExists
-global mDreamOs, new_bouquet, HD
+global new_bouquet
 
 Version        = '1.6'
 plugin_path    = os.path.dirname(sys.modules[__name__].__file__)
@@ -43,18 +43,12 @@ tmp_bouquet    = plugin_path + '/tmp'
 new_bouquet    = tmp_bouquet + '/bouquets.tv'
 title_plug = '..:: Enigma2 Iptv Converter Bouquet V. %s ::..' % Version
 #================
-mDreamOs = False
-try:
-    from enigma import eMediaDatabase
-    mDreamOs = True
-except:
-    mDreamOs = False
 
 if HD.width() > 1280:
     skin_m3up=res_plugin_path + 'fhd/'
 else:
     skin_m3up=res_plugin_path + 'hd/'
-if mDreamOs:
+if os.path.exists('/var/lib/dpkg/status'):
     skin_m3up=skin_m3up + 'dreamOs/'
 
 def add_skin_font():
