@@ -4,50 +4,48 @@
 ****************************************
 *        coded by Lululla              *
 *             skin by MMark            *
-*             16/07/2021               *
+*             01/08/2022               *
 ****************************************
 '''
 #Info http://t.me/tivustream
 # from __future__ import print_function
-from . import _
-from Components.Label import Label
-from Components.ConfigList import ConfigListScreen, ConfigList
+from .__init__ import _
 from Components.ActionMap import ActionMap
+from Components.ConfigList import ConfigListScreen, ConfigList
+from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Pixmap import Pixmap
 from Plugins.Plugin import PluginDescriptor
-from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Screens.Screen import Screen
 from enigma import *
-import os
-import re
-import glob
-from enigma import getDesktop
 from enigma import addFont
 from enigma import eTimer
+from enigma import getDesktop
 from enigma import loadPNG
-from skin import loadSkin
 from os import path, listdir, remove, mkdir, chmod, sys
-from Tools.Directories import fileExists, pathExists
-global new_bouquet
+from os.path import exists as file_exists
+from skin import loadSkin
+import glob
+import os
+import re
+global new_bouquet, skin_m3up, downloadfree
 
-Version        = '1.6'
-plugin_path    = os.path.dirname(sys.modules[__name__].__file__)
-DESKHEIGHT     = getDesktop(0).size().height()
-HD             = getDesktop(0).size()
-# skin_m3up      = plugin_path
-res_plugin_path=plugin_path + '/Skin/'
-iconpic        = plugin_path+ '/plugin.png'
-tmp_bouquet    = plugin_path + '/tmp'
-new_bouquet    = tmp_bouquet + '/bouquets.tv'
+Version = '1.6'
 title_plug = '..:: Enigma2 Iptv Converter Bouquet V. %s ::..' % Version
+plugin_path = os.path.dirname(sys.modules[__name__].__file__)
+HD = getDesktop(0).size()
+res_plugin_path=plugin_path + '/Skin/'
+iconpic = plugin_path+ '/plugin.png'
+tmp_bouquet = plugin_path + '/tmp'
+new_bouquet = tmp_bouquet + '/bouquets.tv'
+downloadfree = "/tmp/tvtom3u/"
 #================
+skin_m3up=res_plugin_path + 'hd/'
 
 if HD.width() > 1280:
     skin_m3up=res_plugin_path + 'fhd/'
-else:
-    skin_m3up=res_plugin_path + 'hd/'
 if os.path.exists('/var/lib/dpkg/status'):
     skin_m3up=skin_m3up + 'dreamOs/'
 
@@ -60,8 +58,7 @@ if not os.path.exists('/tmp/tvtom3u/'):
         os.makedirs('/tmp/tvtom3u/')
     except OSError as e:
         print ('Error creating directory tvtom3u')
-global downloadfree
-downloadfree = "/tmp/tvtom3u/"
+
 try:
     from Components.UsageConfig import defaultMoviePath
     downloadfree = defaultMoviePath()
@@ -77,7 +74,7 @@ class MenuListSelect(MenuList):
             self.l.setItemHeight(50)
         else:
             self.l.setFont(0, gFont('Regular', 22))
-            self.l.setItemHeight(45)
+            self.l.setItemHeight(50)
 
 def lista_bouquet():
     iptv_list = []
@@ -108,7 +105,7 @@ def lista_bouquet():
         return iptv_list
 
 def clear_bqt():
-    if fileExists(new_bouquet):
+    if file_exists(new_bouquet):
         path = tmp_bouquet
         try:
             cmd = 'rm -f %s/*.tv' % path
