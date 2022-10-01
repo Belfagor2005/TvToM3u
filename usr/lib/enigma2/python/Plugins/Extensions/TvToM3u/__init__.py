@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import gettext
 from os import environ as os_environ
 import os
@@ -29,6 +30,4 @@ else:
             print('[' + PluginLanguageDomain + '] fallback to default translation for ' + txt)
             return gettext.gettext(txt)
 
-
     language.addCallback(localeInit)
-    
