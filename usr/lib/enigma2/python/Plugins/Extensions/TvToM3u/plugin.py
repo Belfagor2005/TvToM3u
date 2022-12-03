@@ -7,9 +7,10 @@
 *             skin by MMark            *
 *             01/08/2022               *
 ****************************************
+Info http://t.me/tivustream
 '''
-# Info http://t.me/tivustream
-from .__init__ import _
+from __future__ import print_function
+from . import _
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -216,8 +217,7 @@ class TvToM3u(Screen):
         lista_bouquet()
         self.Menu()
         self['actions'] = ActionMap(['OkCancelActions',
-                                     'ColorActions',
-                                     'SetupActions'], {'ok': self.keyGreen,
+                                     'ColorActions'], {'ok': self.keyGreen,
                                                        'cancel': self.Uscita,
                                                        'green': self.keyGreen,
                                                        'yellow': self.keyYellow,
@@ -230,20 +230,20 @@ class TvToM3u(Screen):
 
     def hauptListEntry(self, dir, name, value):
         res = [(dir, name, value)]
-        icon = '/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/redpanel.png'
+        icon = '%sredpanel.png' % res_plugin_path
         if value == '1':
-            icon = '/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/greenpanel.png'
+            icon = '%sgreenpanel.png' % res_plugin_path
         try:
             name = name.split('   ')[0]
         except:
             pass
         if HD.width() > 1280:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 15), size=(20, 20), png=loadPNG(icon)))  # png=loadPic(icon, 20, 20, 0, 0, 0, 1)))
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 15), size=(20, 20), png=loadPNG(icon)))
             res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT))
         else:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 11), size=(20, 20), png=loadPNG(icon)))  # png=loadPic(icon, 20, 20, 0, 0, 0, 1)))
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 11), size=(20, 20), png=loadPNG(icon)))
             res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT))
