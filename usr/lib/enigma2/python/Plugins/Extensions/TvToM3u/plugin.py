@@ -5,7 +5,7 @@
 ****************************************
 *        coded by Lululla              *
 *             skin by MMark            *
-*             01/08/2022               *
+*             01/09/2023               *
 ****************************************
 Info http://t.me/tivustream
 '''
@@ -20,7 +20,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from enigma import addFont
-from enigma import RT_HALIGN_LEFT
+from enigma import RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from enigma import getDesktop
 from enigma import loadPNG, gFont
 from enigma import eListboxPythonMultiContent
@@ -31,21 +31,21 @@ import os
 import re
 global new_bouquet, skin_m3up, downloadfree
 
-Version = '1.6'
+Version = '1.7'
 title_plug = '..:: Enigma2 Iptv Converter Bouquet V. %s ::..' % Version
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
-HD = getDesktop(0).size()
 res_plugin_path = plugin_path + '/Skin/'
 iconpic = plugin_path + '/plugin.png'
 tmp_bouquet = plugin_path + '/tmp'
 new_bouquet = tmp_bouquet + '/bouquets.tv'
 downloadfree = "/tmp/tvtom3u/"
-skin_m3up = res_plugin_path + 'hd/'
-
-
-if HD.width() > 1280:
+skin_m3up = os.path.join(res_plugin_path, "hd/")
+screenwidth = getDesktop(0).size()
+if screenwidth.width() == 1920:
     skin_m3up = res_plugin_path + 'fhd/'
-if os.path.exists('/var/lib/dpkg/status'):
+if screenwidth.width() == 2560:
+    skin_m3up = res_plugin_path + 'uhd/'
+if os.path.exists('/var/lib/dpkg/info'):
     skin_m3up = skin_m3up + 'dreamOs/'
 
 
@@ -60,7 +60,7 @@ if not os.path.exists('/tmp/tvtom3u/'):
     except OSError as e:
         print ('Error creating directory tvtom3u')
 
-
+downloadfree = '/tmp/'
 try:
     from Components.UsageConfig import defaultMoviePath
     downloadfree = defaultMoviePath()
@@ -72,17 +72,25 @@ except:
 class MenuListSelect(MenuList):
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        if HD.width() > 1280:
-            self.l.setFont(0, gFont('Regular', 34))
+
+        if screenwidth.width() == 2560:
+            self.l.setFont(0, gFont('Regular', 44))
+            self.l.setItemHeight(50)
+        elif screenwidth.width() == 1280:
+            self.l.setFont(0, gFont('Regular', 36))
             self.l.setItemHeight(50)
         else:
-            self.l.setFont(0, gFont('Regular', 22))
-            self.l.setItemHeight(50)
+            self.l.setFont(0, gFont('Regular', 24))
+            self.l.setItemHeight(45)
 
 
 def lista_bouquet():
     iptv_list = []
-    f = open(new_bouquet, 'w')
+    f = ''
+    if sys.version_info[0] == 3:
+        f = open(new_bouquet, 'w', encoding='UTF-8')
+    else:
+        f = open(new_bouquet, 'w')
     f.write('NAME Bouquets (TV)\n')
     for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
         usbq = open(iptv_file, 'r').read()
@@ -93,6 +101,7 @@ def lista_bouquet():
             f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
             print('iptv_file ', iptv_file)
             os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
+
     for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
         usbq = open(iptv_file, 'r').read()
         usbq_lines = usbq.strip().lower()
@@ -103,7 +112,7 @@ def lista_bouquet():
             print('iptv_file 2 ', iptv_file)
             os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
     f.close()
-    if not iptv_list:
+    if len(iptv_list) < 0:
         return False
     else:
         return iptv_list
@@ -168,8 +177,8 @@ class ListSelect:
                         continue
                     tmp = item.split("###")[0]
                     s1 = item.split("###")[1]
-                    print('tmp2: ', tmp)
-                    print('s1: ', s1)
+                    # print('tmp2: ', tmp)
+                    # print('s1: ', s1)
                 if tmp[:6] == '#NAME ':
                     ret.append([filename, tmp[6:]])
                 else:
@@ -199,14 +208,13 @@ class ListSelect:
 class TvToM3u(Screen):
 
     def __init__(self, session):
-        self.session = session
-        skin = skin_m3up + 'TvToM3uPanel.xml'
-        f = open(skin, 'r')
-        self.skin = f.read()
-        f.close()
         Screen.__init__(self, session)
+        self.session = session
+        skin = os.path.join(skin_m3up, 'TvToM3uPanel.xml')
+        with open(skin, 'r') as f:
+            self.skin = f.read()
         self.ListSelect = ListSelect()
-        self['text'] = Label(_('Select IPTV List and convert to M3U in\n%s\n     by Lululla\n\n     www.corvoboys.com') % downloadfree)
+        self['text'] = Label(_('Select IPTV List and convert to M3U in\n%s\n\n\n     by Lululla\n\n     www.corvoboys.org') % downloadfree)
         self['version'] = Label(_('Version %s' % Version))
         self['Key_Green'] = Label(_('Convert') + ' IPTV %s' % downloadfree)
         self['Key_Yellow'] = Label(_('Backup') + ' IPTV %s' % downloadfree)
@@ -237,16 +245,22 @@ class TvToM3u(Screen):
             name = name.split('   ')[0]
         except:
             pass
-        if HD.width() > 1280:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 15), size=(20, 20), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT))
+        if screenwidth.width() == 2560:
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(24, 24), png=loadPNG(icon)))
+            res.append(MultiContentEntryText(pos=(50, 0), size=(700, 50), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+
+        elif screenwidth.width() == 1280:
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(24, 24), png=loadPNG(icon)))
+            res.append(MultiContentEntryText(pos=(50, 0), size=(500, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 11), size=(20, 20), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(50, 7), size=(425, 40), font=0, text=name, flags=RT_HALIGN_LEFT))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT))
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 9), size=(24, 24), png=loadPNG(icon)))
+            res.append(MultiContentEntryText(pos=(50, 0), size=(400, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         return res
 
     def Menu(self):
@@ -264,15 +278,18 @@ class TvToM3u(Screen):
             try:
                 for dir, name, value in self.ListSelect.TvList():
                     if url == name:
+                        WriteBouquet = ''
                         url = tmp_bouquet + '/%s' % dir
                         f = open(url, 'r')
                         content = f.read()
                         regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
                         match = re.compile(regexcat).findall(content)
-                        nameM3u = name.replace(' ', '')  # for FILE_M3U
-                        nameM3u = nameM3u.lower()
+                        nameM3u = name.replace(' ', '').lower()
                         FILE_M3U = '%s/%s.m3u' % (downloadfree, nameM3u)
-                        WriteBouquet = open(FILE_M3U, 'w')
+                        if sys.version_info[0] == 3:
+                            WriteBouquet = open(FILE_M3U, 'w', encoding='UTF-8')
+                        else:
+                            WriteBouquet = open(FILE_M3U, 'w')
                         WriteBouquet.write('#EXTM3U\n')
                         for url, name in match:
                             n1 = url.find("http", 0)
@@ -288,7 +305,7 @@ class TvToM3u(Screen):
                             WriteBouquet.write('%s\n' % url)
                         f.close()
                         WriteBouquet.close()
-                self.mbox = self.session.open(MessageBox, _('Export Succes'), MessageBox.TYPE_INFO, timeout=8)
+                self.session.open(MessageBox, _('Export Succes'), MessageBox.TYPE_INFO, timeout=8)
             except:
                 print('++++++++++ERROR CONVERT+++++++++++++')
 
@@ -297,7 +314,7 @@ class TvToM3u(Screen):
         if iptv_to_save:
             for iptv in iptv_to_save:
                 os.system('cp -rf ' + tmp_bouquet + '/' + iptv + ' ' + '/tmp/tvtom3u/' + iptv)
-        self.mbox = self.session.open(MessageBox, _('Command Send - Check'), MessageBox.TYPE_INFO, timeout=8)
+        self.mbox = self.session.open(MessageBox, _('Command Save Send - Check'), MessageBox.TYPE_INFO, timeout=8)
 
 
 def Main(session, **kwargs):

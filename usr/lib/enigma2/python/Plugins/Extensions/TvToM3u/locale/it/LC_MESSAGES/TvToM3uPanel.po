@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: corvone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-16 20:32+0200\n"
-"PO-Revision-Date: 2021-07-16 20:33+0200\n"
+"POT-Creation-Date: 2023-09-12 21:51+0200\n"
+"PO-Revision-Date: 2023-09-12 21:51+0200\n"
 "Last-Translator: ))^^(( <>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -15,42 +15,52 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: plugin.py\n"
 
-#: plugin.py:212
+#: plugin.py:217
 #, python-format
 msgid ""
 "Select IPTV List and convert to M3U in\n"
 "%s\n"
+"\n"
+"\n"
 "     by Lululla\n"
 "\n"
-"     www.corvoboys.com"
+"     www.corvoboys.org"
 msgstr ""
-"Seleziona  la lista IPTV nel bouquet e convertila in .M3U in\n"
-"%s\n"
-"     by Lululla\n"
-"\n"
-"     www.corvoboys.com"
 
-#: plugin.py:213
+#: plugin.py:218
 #, python-format
 msgid "Version %s"
 msgstr ""
 
-#: plugin.py:214
+#: plugin.py:219
 msgid "Convert"
 msgstr "Esporta"
 
-#: plugin.py:215
+#: plugin.py:220
 msgid "Backup"
 msgstr ""
 
-#: plugin.py:217
+#: plugin.py:222
 msgid "Exit"
 msgstr "Esci"
 
-#: plugin.py:295
+#: plugin.py:308
 msgid "Export Succes"
 msgstr "Esportato con successo"
 
-#: plugin.py:304
-msgid "Command Send - Check"
+#: plugin.py:317
+msgid "Command Save Send - Check"
 msgstr ""
+
+#~ msgid ""
+#~ "Select IPTV List and convert to M3U in\n"
+#~ "%s\n"
+#~ "     by Lululla\n"
+#~ "\n"
+#~ "     www.corvoboys.com"
+#~ msgstr ""
+#~ "Seleziona  la lista IPTV nel bouquet e convertila in .M3U in\n"
+#~ "%s\n"
+#~ "     by Lululla\n"
+#~ "\n"
+#~ "     www.corvoboys.com"
