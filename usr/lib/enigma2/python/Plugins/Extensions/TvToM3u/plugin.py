@@ -26,6 +26,7 @@ from enigma import loadPNG, gFont
 from enigma import eListboxPythonMultiContent
 from os import path, sys
 from os.path import exists as file_exists
+import codecs
 import glob
 import os
 import re
@@ -211,7 +212,7 @@ class TvToM3u(Screen):
         Screen.__init__(self, session)
         self.session = session
         skin = os.path.join(skin_m3up, 'TvToM3uPanel.xml')
-        with open(skin, 'r') as f:
+        with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
         self.ListSelect = ListSelect()
         self['text'] = Label(_('Select IPTV List and convert to M3U in\n%s\n\n\n     by Lululla\n\n     www.corvoboys.org') % downloadfree)
