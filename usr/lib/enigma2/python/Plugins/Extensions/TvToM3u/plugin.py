@@ -10,7 +10,7 @@
 Info http://t.me/tivustream
 '''
 from __future__ import print_function
-from . import _
+from . import _, paypal
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -32,8 +32,8 @@ import os
 import re
 global new_bouquet, skin_m3up, downloadfree
 
-Version = '1.7'
-title_plug = '..:: Enigma2 Iptv Converter Bouquet V. %s ::..' % Version
+Version = '1.8'
+title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % Version
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 res_plugin_path = plugin_path + '/Skin/'
 iconpic = plugin_path + '/plugin.png'
@@ -75,10 +75,10 @@ class MenuListSelect(MenuList):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
 
         if screenwidth.width() == 2560:
-            self.l.setFont(0, gFont('Regular', 44))
-            self.l.setItemHeight(50)
-        elif screenwidth.width() == 1280:
-            self.l.setFont(0, gFont('Regular', 36))
+            self.l.setFont(0, gFont('Regular', 48))
+            self.l.setItemHeight(56)
+        elif screenwidth.width() == 1920:
+            self.l.setFont(0, gFont('Regular', 30))
             self.l.setItemHeight(50)
         else:
             self.l.setFont(0, gFont('Regular', 24))
@@ -214,13 +214,15 @@ class TvToM3u(Screen):
         skin = os.path.join(skin_m3up, 'TvToM3uPanel.xml')
         with codecs.open(skin, "r", encoding="utf-8") as f:
             self.skin = f.read()
+        self.setup_title = title_plug
         self.ListSelect = ListSelect()
-        self['text'] = Label(_('Select IPTV List and convert to M3U in\n%s\n\n\n     by Lululla\n\n     www.corvoboys.org') % downloadfree)
-        self['version'] = Label(_('Version %s' % Version))
+        self['text'] = Label(_('Select IPTV List and convert to M3U in\n%s') % downloadfree)
+        self['version'] = Label(_('Version %s by Lululla' % Version))
         self['Key_Green'] = Label(_('Convert') + ' IPTV %s' % downloadfree)
         self['Key_Yellow'] = Label(_('Backup') + ' IPTV %s' % downloadfree)
-        self['Key_Blue'] = Label(' ')
+        # self['Key_Blue'] = Label(' ')
         self['Key_Red'] = Label(_('Exit'))
+        self["paypal"] = Label()
         self['MENU'] = MenuListSelect([])
         self['MENU'].selectionEnabled(1)
         lista_bouquet()
@@ -230,8 +232,14 @@ class TvToM3u(Screen):
                                                        'cancel': self.Uscita,
                                                        'green': self.keyGreen,
                                                        'yellow': self.keyYellow,
-                                                       'blue': self.Uscita,
+                                                       # 'blue': self.Uscita,
                                                        'red': self.Uscita}, -1)
+        self.onLayoutFinish.append(self.layoutFinished)
+
+    def layoutFinished(self):
+        payp = paypal()
+        self["paypal"].setText(payp)
+        self.setTitle(self.setup_title)
 
     def Uscita(self):
         clear_bqt()
@@ -247,19 +255,19 @@ class TvToM3u(Screen):
         except:
             pass
         if screenwidth.width() == 2560:
-            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(24, 24), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(50, 0), size=(700, 50), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 15), size=(24, 24), png=loadPNG(icon)))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(700, 54), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
 
-        elif screenwidth.width() == 1280:
+        elif screenwidth.width() == 1920:
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(24, 24), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(50, 0), size=(500, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(800, 50), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         else:
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 9), size=(24, 24), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(50, 0), size=(400, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(400, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
             res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         return res
@@ -281,8 +289,10 @@ class TvToM3u(Screen):
                     if url == name:
                         WriteBouquet = ''
                         url = tmp_bouquet + '/%s' % dir
-                        f = open(url, 'r')
-                        content = f.read()
+                        with codecs.open(url, "r", encoding="utf-8") as f:
+                            content = f.read()
+                        # f = open(url, 'r')
+                        # content = f.read()
                         regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
                         match = re.compile(regexcat).findall(content)
                         nameM3u = name.replace(' ', '').lower()

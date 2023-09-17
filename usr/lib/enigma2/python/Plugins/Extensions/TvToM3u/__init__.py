@@ -4,30 +4,50 @@
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import gettext
-from os import environ as os_environ
 import os
+
 PluginLanguageDomain = 'TvToM3uPanel'
 PluginLanguagePath = 'Extensions/TvToM3uPanel/locale'
 
+isDreamOS = False
+if os.path.exists("/var/lib/dpkg/status"):
+    isDreamOS = True
+
+
+def paypal():
+    conthelp = "If you like what I do you\n"
+    conthelp += "can contribute with a coffee\n"
+    conthelp += "scan the qr code and donate € 1.00"
+    return conthelp
+
+
+def wanStatus():
+    publicIp = ''
+    try:
+        file = os.popen('wget -qO - ifconfig.me')
+        public = file.read()
+        publicIp = "Wan %s" % (str(public))
+    except:
+        if os.path.exists("/tmp/currentip"):
+            os.remove("/tmp/currentip")
+    return publicIp
+
 
 def localeInit():
-    if os.path.exists('/var/lib/dpkg/status'):
-        lang = language.getLanguage()[:2]
-        os_environ['LANGUAGE'] = lang
+    if isDreamOS:  # check if opendreambox image
+        lang = language.getLanguage()[:2]  # getLanguage returns e.g. "fi_FI" for "language_country"
+        os.environ["LANGUAGE"] = lang  # Enigma doesn't set this (or LC_ALL, LC_MESSAGES, LANG). gettext needs it!
     gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))
 
 
-if os.path.exists('/var/lib/dpkg/status'):
-    _ = lambda txt: (gettext.dgettext(PluginLanguageDomain, txt) if txt else '')
-    localeInit()
-    language.addCallback(localeInit)
+if isDreamOS:  # check if DreamOS image
+    _ = lambda txt: gettext.dgettext(PluginLanguageDomain, txt) if txt else ""
 else:
-
     def _(txt):
         if gettext.dgettext(PluginLanguageDomain, txt):
             return gettext.dgettext(PluginLanguageDomain, txt)
         else:
-            print('[' + PluginLanguageDomain + '] fallback to default translation for ' + txt)
+            print(("[%s] fallback to default translation for %s" % (PluginLanguageDomain, txt)))
             return gettext.gettext(txt)
-
-    language.addCallback(localeInit)
+localeInit()
+language.addCallback(localeInit)
