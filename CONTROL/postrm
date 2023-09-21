@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo "Checking for an older version of TvToM3uPanel in the system..."
+if [ -d /usr/lib/enigma2/python/Plugins/Extensions/TvToM3uPanel ]
+then
+rm -rf /usr/lib/enigma2/python/Plugins/Extensions/TvToM3uPanel > /dev/null 2>&1
+fi
+echo "Plugin removed! You should restart enigma2 now!"
+exit 0
