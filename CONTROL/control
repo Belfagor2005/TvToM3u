@@ -1,11 +1,8 @@
 Package: enigma2-plugin-extensions-tvtom3upanel
 Version: 1.8
 Section: enigma2
-OE: 2.0
-License: *
 Priority: optional
 Architecture: all
 Maintainer: @lululla
 Description: TvToM3uPanel Plugin
-Source: *
 Homepage: http://www.corvoboys.org

@@ -100,7 +100,7 @@ def lista_bouquet():
             iptv_list.append(os.path.basename(iptv_file))
             strep_bq = iptv_file.replace('/etc/enigma2/', '')
             f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
-            print('iptv_file ', iptv_file)
+            # print('iptv_file ', iptv_file)
             os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
 
     for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
@@ -110,7 +110,7 @@ def lista_bouquet():
             iptv_list.append(os.path.basename(iptv_file))
             strep_bq = iptv_file.replace('/etc/enigma2/', '')
             f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
-            print('iptv_file 2 ', iptv_file)
+            # print('iptv_file 2 ', iptv_file)
             os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
     f.close()
     if len(iptv_list) < 0:
@@ -167,7 +167,7 @@ class ListSelect:
                     print(str(e))
                     continue
                 tmp = fb.readline().strip()
-                print('tmp 1 :', tmp)
+                # print('tmp 1 :', tmp)
                 s1 = fb.readline().strip()
                 items = []
                 item = tmp + "###" + s1
@@ -280,7 +280,7 @@ class TvToM3u(Screen):
 
     def keyGreen(self):
         url = self['MENU'].getCurrent()[0][1]
-        print('ok green', url)
+        # print('ok green', url)
         if url == -1 or None:
             return
         else:

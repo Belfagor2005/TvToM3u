@@ -1,22 +1,10 @@
 #!/bin/sh
-if [ -d /usr/lib/python2.6 ]; then
-if [ ! -d /usr/lib/python2.7 ]; then
-echo "**********************************************************"
-echo "*                        Oooooooops                      *"
-echo "*                Not Compatible with (OE1.6)             *"
-echo "**********************************************************"
-sleep 2
-exit 1 
-fi
-fi
 echo "Checking for an older version of TvToM3uPanel in the system..."
-if [ -d /usr/lib/enigma2/python/Plugins/Extensions/TvToM3uPanel ]
-then
-rm -rf /usr/lib/enigma2/python/Plugins/Extensions/TvToM3uPanel > /dev/null 2>&1
-echo "An older version of TvToM3uPanel was found and removed"
-echo "Proceeding to installation..."
-else
-echo "TvToM3uPanel  was not found in the system"
-echo "Proceeding to installation..."
+EXTDIR="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3uPanel"
+if [ -d "$EXTDIR" ]; then
+   rm -rf "$EXTDIR" > /dev/null 2>&1
 fi
+echo "***********************************"
+echo "* Proceeding to installation...   *"
+echo "***********************************"
 exit 0
