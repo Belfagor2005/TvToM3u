@@ -14,17 +14,15 @@
     <eLabel text="Press OK : convert select list IPTV to M3U" position="535,991" zPosition="3" size="1338,75" font="cvfont;45" halign="center" valign="center" foregroundColor="#ffff00" backgroundColor="#ffffff" transparent="1" />
     <!-- Button -->
     <ePixmap position="38,863" size="24,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/greenpanel.png" zPosition="2" alphatest="blend" />
-    <widget position="80,860" size="405,60" name="Key_Green" font="cvfont;30" halign="left" foregroundColor="#ffffff" backgroundColor="#101010" zPosition="1" transparent="1" />
-    
-    
+    <widget position="80,860" size="440,60" name="Key_Green" font="cvfont;28" halign="left" foregroundColor="#ffffff" backgroundColor="#101010" zPosition="1" transparent="1" />
     <ePixmap position="38,803" size="24,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/yellowpanel.png" zPosition="2" alphatest="blend" />
-    <widget position="80,800" size="405,60" name="Key_Yellow" font="cvfont;30" halign="left" foregroundColor="#ffffff" backgroundColor="#101010" zPosition="1" transparent="1" />
+    <widget position="80,800" size="440,60" name="Key_Yellow" font="cvfont;28" halign="left" foregroundColor="#ffffff" backgroundColor="#101010" zPosition="1" transparent="1" />
     <ePixmap position="38,923" size="24,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/redpanel.png" zPosition="2" alphatest="blend" />
-    <widget position="80,920" size="405,60" name="Key_Red" font="cvfont;30" halign="left" foregroundColor="#ffffff" backgroundColor="#101010" zPosition="1" transparent="1" />
+    <widget position="80,920" size="440,60" name="Key_Red" font="cvfont;28" halign="left" foregroundColor="#ffffff" backgroundColor="#101010" zPosition="1" transparent="1" />
     
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/logo_corvo.png" scale="stretch" position="545,110" size="1322,253" zPosition="6" alphatest="blend" transparent="1" />
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/PayPal.png" scale="stretch" position="180,125" size="156,75" zPosition="2" alphatest="on" />
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/qr-codetvs.png" scale="stretch" position="101,216" size="320,320" zPosition="2" alphatest="on" />
-	<widget name="paypal" position="7,574" size="526,211" font="Regular; 30" halign="center" foregroundColor="#ffffff" backgroundColor="#101010" transparent="1" zPosition="2" />
-	<eLabel position="0,111" size="535,679" backgroundColor="#80000000" cornerRadius="20" zPosition="1" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/PayPal.png" scale="stretch" position="180,125" size="156,75" zPosition="2" alphatest="blend" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/qr-codetvs.png" scale="stretch" position="101,216" size="320,320" zPosition="2" alphatest="blend" />
+	<widget name="paypal" position="7,574" size="526,211" font="Regular; 28" halign="center" foregroundColor="#ffffff" backgroundColor="#101010" transparent="1" zPosition="2" />
+	<eLabel position="0,111" size="535,679" backgroundColor="#80000000" cornerRadius="20" transparent="1" zPosition="1" />
 </screen>

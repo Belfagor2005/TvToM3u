@@ -280,7 +280,6 @@ class TvToM3u(Screen):
 
     def keyGreen(self):
         url = self['MENU'].getCurrent()[0][1]
-        # print('ok green', url)
         if url == -1 or None:
             return
         else:
@@ -291,8 +290,6 @@ class TvToM3u(Screen):
                         url = tmp_bouquet + '/%s' % dir
                         with codecs.open(url, "r", encoding="utf-8") as f:
                             content = f.read()
-                        # f = open(url, 'r')
-                        # content = f.read()
                         regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
                         match = re.compile(regexcat).findall(content)
                         nameM3u = name.replace(' ', '').lower()
@@ -317,8 +314,9 @@ class TvToM3u(Screen):
                         f.close()
                         WriteBouquet.close()
                 self.session.open(MessageBox, _('Export Succes'), MessageBox.TYPE_INFO, timeout=8)
-            except:
+            except Exception as e:
                 print('++++++++++ERROR CONVERT+++++++++++++')
+                print('++++++++++%s ', e)
 
     def keyYellow(self):
         iptv_to_save = lista_bouquet()
