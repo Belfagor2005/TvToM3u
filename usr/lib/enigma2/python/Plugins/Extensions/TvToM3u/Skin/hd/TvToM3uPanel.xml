@@ -1,15 +1,15 @@
 <screen name="TvToM3u" position="center,center" size="1280,720" title="Main Menu" backgroundColor="#10202020" flags="wfNoBorder">
     <ePixmap position="0,-70" size="1280,790" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/bigp.png" scale="stretch" zPosition="-1" alphatest="blend" />
-    <eLabel text="Convert TvToM3u Plugin" position="372,29" size="546,62" font="cvfont;30" halign="left" valign="center" backgroundColor="#0000ff" transparent="1" zPosition="3" />
+    <eLabel text="Convert TvToM3u Plugin" position="368,2" size="546,62" font="cvfont;30" halign="left" valign="center" backgroundColor="#0000ff" transparent="1" zPosition="3" />
     <widget name="version" position="18,662" zPosition="3" size="324,50" font="cvfont;24" backgroundColor="#2518252e" transparent="1" foregroundColor="#ffff00" halign="center" />
     <!-- Text Maintain -->
-    <widget name="text" position="365,556" size="890,100" font="cvfont;24" halign="left" foregroundColor="#ffffff" backgroundColor="#10202020" transparent="1" zPosition="1" />
+    <widget name="text" position="369,556" size="884,100" font="cvfont;24" halign="left" foregroundColor="#ffffff" backgroundColor="#10202020" transparent="1" zPosition="1" />
     <!-- Clock -->
-    <widget source="global.CurrentTime" render="Label" position="1004,24" size="265,60" font="cvfont; 34" zPosition="2" foregroundColor="#5483fe" backgroundColor="#202020" halign="center" transparent="1">
+    <widget source="global.CurrentTime" render="Label" position="1001,4" size="265,60" font="cvfont; 34" zPosition="2" foregroundColor="#5483fe" backgroundColor="#202020" halign="center" transparent="1">
         <convert type="ClockToText">Format %H:%M:%S</convert>
     </widget>
     <!-- Lists -->
-    <widget name="MENU" position="366,299" size="889,256" foregroundColor="#66ff00" foregroundColorSelected="#ff6600" backgroundColor="#303030" backgroundColorSelected="#002f72" scrollbarMode="showNever" enableWrapAround="1" transparent="1" zPosition="5" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/slider35.png" backgroundPixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/sliderp.png" />
+    <widget name="MENU" position="369,299" size="884,256" foregroundColor="#66ff00" foregroundColorSelected="#ff6600" backgroundColor="#303030" backgroundColorSelected="#002f72" scrollbarMode="showNever" enableWrapAround="1" transparent="1" zPosition="5" />
     <!-- Panel Info -->
     <eLabel text="Press OK : convert select list IPTV to M3U" position="352,660" zPosition="2" size="897,50" font="cvfont;30" halign="center" valign="center" foregroundColor="#ffff00" backgroundColor="#ffffff" transparent="1" />
     <!-- Button -->
@@ -24,6 +24,6 @@
 
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/PayPal.png" position="97,57" size="156,75" scale="stretch" zPosition="2" alphatest="on" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/Skin/qr-codetvs.png" position="71,145" size="225,225" scale="stretch" zPosition="2" alphatest="on" />
-	<widget name="paypal" position="5,381" size="353,124" font="Regular; 20" halign="center" foregroundColor="#ffffff" backgroundColor="#101010" transparent="1" zPosition="2" />
+	<widget name="paypal" position="3,381" size="361,124" font="Regular; 20" halign="center" foregroundColor="#ffffff" backgroundColor="#101010" transparent="1" zPosition="2" />
 	<eLabel position="3,58" size="361,447" backgroundColor="#80000000" cornerRadius="20" zPosition="1" />
 </screen>

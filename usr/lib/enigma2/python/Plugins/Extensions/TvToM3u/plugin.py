@@ -32,7 +32,7 @@ import os
 import re
 global new_bouquet, skin_m3up, downloadfree
 
-Version = '1.8'
+Version = '1.9'
 title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % Version
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 res_plugin_path = plugin_path + '/Skin/'
@@ -93,7 +93,6 @@ def lista_bouquet():
     else:
         f = open(new_bouquet, 'w')
     f.write('NAME Bouquets (TV)\n')
-
     # for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
         # with codecs.open(iptv_file, "rb", encoding="latin-1") as d:
             # for usbq_lines in d.readlines():
@@ -106,7 +105,6 @@ def lista_bouquet():
                         # f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
                         # # print('iptv_file ', iptv_file)
                         # os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
-
     for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
         # with codecs.open(iptv_file, "rb", encoding="latin-1") as d:
         # for usbq_lines in d.readlines():    # d.read()  ???
@@ -119,9 +117,7 @@ def lista_bouquet():
                 f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
                 # print('iptv_file ', iptv_file)
                 os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
-
     for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
-
         # with codecs.open(iptv_file, "rb", encoding="latin-1") as d:
             # for usbq_lines in d.readlines():  # d.read()  ???
         usbq = open(iptv_file, 'r', encoding="latin-1").read()
@@ -188,7 +184,6 @@ class ListSelect:
                     print(str(e))
                     continue
                 tmp = fb.readline().strip()
-                # print('tmp 1 :', tmp)
                 s1 = fb.readline().strip()
                 items = []
                 item = tmp + "###" + s1
@@ -199,8 +194,6 @@ class ListSelect:
                         continue
                     tmp = item.split("###")[0]
                     s1 = item.split("###")[1]
-                    # print('tmp2: ', tmp)
-                    # print('s1: ', s1)
                 if tmp[:6] == '#NAME ':
                     ret.append([filename, tmp[6:]])
                 else:
@@ -275,22 +268,22 @@ class TvToM3u(Screen):
             name = name.split('   ')[0]
         except:
             pass
-        if screenwidth.width() == 2560:
+        if screenwidth.width() == 2560:  # 1770
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 15), size=(24, 24), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(700, 54), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(1500, 54), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            # res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            # res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
 
-        elif screenwidth.width() == 1920:
+        elif screenwidth.width() == 1920:  # 1335
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 12), size=(24, 24), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(800, 50), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-        else:
+            res.append(MultiContentEntryText(pos=(60, 0), size=(1200, 50), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            # res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            # res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        else:  # 890
             res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 9), size=(24, 24), png=loadPNG(icon)))
-            res.append(MultiContentEntryText(pos=(60, 0), size=(400, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-            res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+            res.append(MultiContentEntryText(pos=(60, 0), size=(800, 40), font=0, text=name, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=dir, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+        res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=value, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         return res
 
     def Menu(self):
