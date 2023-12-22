@@ -93,21 +93,7 @@ def lista_bouquet():
     else:
         f = open(new_bouquet, 'w')
     f.write('NAME Bouquets (TV)\n')
-    # for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
-        # with codecs.open(iptv_file, "rb", encoding="latin-1") as d:
-            # for usbq_lines in d.readlines():
-                # if 'http' in usbq_lines.strip().lower():
-                    # # usbq = open(iptv_file, 'r').read()
-                    # # usbq_lines = usbq.strip().lower()
-                    # if 'http' in usbq_lines:
-                        # iptv_list.append(os.path.basename(iptv_file))
-                        # strep_bq = iptv_file.replace('/etc/enigma2/', '')
-                        # f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
-                        # # print('iptv_file ', iptv_file)
-                        # os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
     for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
-        # with codecs.open(iptv_file, "rb", encoding="latin-1") as d:
-        # for usbq_lines in d.readlines():    # d.read()  ???
         usbq = open(iptv_file, 'r', encoding="latin-1").read()
         usbq_lines = usbq.strip().lower()
         if 'http' in usbq_lines.strip().lower():
@@ -115,11 +101,8 @@ def lista_bouquet():
                 iptv_list.append(os.path.basename(iptv_file))
                 strep_bq = iptv_file.replace('/etc/enigma2/', '')
                 f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
-                # print('iptv_file ', iptv_file)
                 os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
     for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
-        # with codecs.open(iptv_file, "rb", encoding="latin-1") as d:
-            # for usbq_lines in d.readlines():  # d.read()  ???
         usbq = open(iptv_file, 'r', encoding="latin-1").read()
         usbq_lines = usbq.strip().lower()
         if 'http' in usbq_lines.strip().lower():
@@ -127,7 +110,6 @@ def lista_bouquet():
                 iptv_list.append(os.path.basename(iptv_file))
                 strep_bq = iptv_file.replace('/etc/enigma2/', '')
                 f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' + str(strep_bq) + '" ORDER BY bouquet' + '\n')
-                # print('iptv_file 2 ', iptv_file)
                 os.system('cp -rf /etc/enigma2/' + str(strep_bq) + ' ' + tmp_bouquet)
     f.close()
     if len(iptv_list) < 0:
