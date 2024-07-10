@@ -9,12 +9,11 @@ dream='/var/lib/dpkg/info'
 
 if [ -d "$dream" ]; then
    dpkg -P --force-all enigma2-plugin-extensions-tvtom3upanel
-   rm -rf "$EXTDIR" > /dev/null 2>&1
 fi
 
 if [ -d "$EXTDIR" ]; then
    opkg remove --force-remove enigma2-plugin-extensions-tvtom3upanel
-   rm -rf "$EXTDIR" > /dev/null 2>&1
+rm -rf "$EXTDIR" > /dev/null 2>&1
 fi
 echo "*****************************************"
 echo "*          ....done                     *"
