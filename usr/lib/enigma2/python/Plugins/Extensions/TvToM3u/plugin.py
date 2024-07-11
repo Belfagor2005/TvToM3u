@@ -43,16 +43,15 @@ iconpic = plugin_path + '/plugin.png'
 tmp_bouquet = plugin_path + '/tmp'
 new_bouquet = tmp_bouquet + '/bouquets.tv'
 downloadfree = "/tmp/tvtom3u/"
-
 screenwidth = getDesktop(0).size()
-if screenwidth.width() == 1920:
-    skin_m3up = res_plugin_path + 'fhd/'
 if screenwidth.width() == 2560:
-    skin_m3up = res_plugin_path + 'uhd/'
+    skin_m3up = os.path.join(plugin_path, 'Skin/uhd/')
+elif screenwidth.width() == 1920:
+    skin_m3up = os.path.join(plugin_path, 'Skin/fhd/')
 else:
-    skin_m3up = res_plugin_path + "hd/"
+    skin_m3up = os.path.join(plugin_path, 'Skin/hd/')
 if os.path.exists('/var/lib/dpkg/info'):
-    skin_m3up = skin_m3up + 'dreamOs/'
+    skin_m3up = os.path.join(skin_m3up, 'dreamOs/')
 
 
 def add_skin_font():
@@ -72,6 +71,20 @@ try:
 except:
     if os.path.exists("/usr/bin/apt-get"):
         downloadfree = ('/media/hdd/movie/')
+
+
+def get_safe_filename(filename, fallback=''):
+    '''Convert filename to safe filename'''
+    import unicodedata
+    import six
+    name = filename.replace(' ', '_').replace('/', '_')
+    if isinstance(name, six.text_type):
+        name = name.encode('utf-8')
+    name = unicodedata.normalize('NFKD', six.text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+    name = re.sub(b'[^a-z0-9-_]', b'', name.lower())
+    if not name:
+        name = fallback
+    return six.ensure_str(name)
 
 
 class MenuListSelect(MenuList):
@@ -284,8 +297,8 @@ class TvToM3u(Screen):
                         content = f.read()
                     regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
                     match = re.compile(regexcat).findall(content)
-                    nameM3u = name.replace(' ', '').lower()
-                    FILE_M3U = '%s/%s.m3u' % (downloadfree, nameM3u)
+                    nameM3u = get_safe_filename(name).replace(' ', '').lower()
+                    FILE_M3U = '%s%s.m3u' % (downloadfree, nameM3u)
                     if sys.version_info[0] == 3:
                         WriteBouquet = open(FILE_M3U, 'w', encoding='UTF-8')
                     else:
