@@ -35,7 +35,7 @@ import os
 import re
 global downloadfree
 
-Version = '1.9'
+Version = '2.0'
 title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % Version
 plugin_path = os.path.dirname(sys.modules[__name__].__file__)
 res_plugin_path = plugin_path + '/Skin/'
