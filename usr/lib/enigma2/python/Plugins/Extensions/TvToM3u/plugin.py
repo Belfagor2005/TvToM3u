@@ -19,6 +19,7 @@ from Components.MultiContent import (MultiContentEntryText, MultiContentEntryPix
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from Tools.Directories import fileExists
 from enigma import (
     addFont,
     RT_HALIGN_LEFT,
@@ -27,13 +28,19 @@ from enigma import (
     loadPNG,
     gFont,
     eListboxPythonMultiContent,
-    )
+)
 from os import (path, sys)
 from os.path import exists as file_exists
 import codecs
 import glob
 import os
 import re
+try:
+    from urllib.parse import unquote, quote
+except:
+    from urlparse import unquote, quote
+
+
 global downloadfree
 
 Version = '2.0'
@@ -46,13 +53,13 @@ new_bouquet = tmp_bouquet + '/bouquets.tv'
 downloadfree = "/tmp/tvtom3u/"
 screenwidth = getDesktop(0).size()
 if screenwidth.width() == 2560:
-    skin_m3up = os.path.join(plugin_path, 'Skin/uhd/')
+    skin_m3up = plugin_path + '/Skin/uhd/'
 elif screenwidth.width() == 1920:
-    skin_m3up = os.path.join(plugin_path, 'Skin/fhd/')
+    skin_m3up = plugin_path + '/Skin/fhd/'
 else:
-    skin_m3up = os.path.join(plugin_path, 'Skin/hd/')
+    skin_m3up = plugin_path + '/Skin/hd/'
 if os.path.exists('/var/lib/dpkg/info'):
-    skin_m3up = os.path.join(skin_m3up, 'dreamOs/')
+    skin_m3up = skin_m3up + '/dreamOs/'
 
 
 def add_skin_font():
@@ -64,7 +71,7 @@ if not os.path.exists('/tmp/tvtom3u/'):
     try:
         os.makedirs('/tmp/tvtom3u/')
     except OSError as e:
-        print ('Error creating directory tvtom3u')
+        print('Error creating directory tvtom3u', e)
 
 try:
     from Components.UsageConfig import defaultMoviePath
@@ -86,6 +93,71 @@ def get_safe_filename(filename, fallback=''):
     if not name:
         name = fallback
     return six.ensure_str(name)
+
+
+def parse_m3u(file_path):
+    channels = []
+    with open(file_path, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+        for i in range(0, len(lines), 2):
+            if i + 1 < len(lines):
+                info = lines[i].strip()
+                url = lines[i + 1].strip()
+                if info.startswith('#EXTINF:'):
+                    match = re.search(r'tvg-name="([^"]*)".*,(.*)$', info)
+                    if match:
+                        name = match.group(2)
+                        channels.append((name, url))
+    return channels
+
+
+def write_tv(channels, output_file):
+    with open(output_file, 'w', encoding='utf-8') as file:
+        for name, url in channels:
+            decoded_name = unquote(name)
+            file.write(f'{decoded_name} {url}\n')
+
+
+def parse_tv(file_path):
+    channels = []
+    with codecs.open(file_path, "r", encoding="utf-8") as file:
+        line = file.read()
+        regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
+        match = re.compile(regexcat).findall(line)
+        for url, name in match:
+            n1 = url.find("http", 0)
+            if n1 > - 1:
+                url = url[n1:]
+                url = url.replace('%3a', ':')
+                channels.append((name, url))                
+    return channels
+
+
+def write_m3u(channels, output_file):
+    with open(output_file, 'w', encoding='utf-8') as file:
+        file.write('#EXTM3U\n')
+        for name, url in channels:
+            encoded_name = quote(name)
+            file.write(f'#EXTINF:-1 tvg-name="{encoded_name}",{name}\n')
+            file.write(f'{url}\n')
+
+
+def filter_channels(channels, keyword):
+    return [channel for channel in channels if keyword.lower() in channel[0].lower()]
+
+
+def sort_channels(channels):
+    return sorted(channels, key=lambda x: x[0].lower())
+
+
+def remove_duplicates(channels):
+    seen = set()
+    return [channel for channel in channels if not (channel[0] in seen or seen.add(channel[0]))]
+
+
+def print_channel_list(channels):
+    for i, (name, url) in enumerate(channels, 1):
+        print(f"{i}. {name}")
 
 
 class MenuListSelect(MenuList):
@@ -248,6 +320,11 @@ class TvToM3u(Screen):
                                                        'red': self.Uscita}, -1)
         self.onLayoutFinish.append(self.layoutFinished)
 
+    def openVi(self, file):
+        from .type_utils import zEditor
+        if fileExists(file):
+            self.session.open(zEditor, file)
+
     def layoutFinished(self):
         payp = paypal()
         self["paypal"].setText(payp)
@@ -294,32 +371,13 @@ class TvToM3u(Screen):
                 if url == name:
                     WriteBouquet = ''
                     url = tmp_bouquet + '/%s' % dir
-                    with codecs.open(url, "r", encoding="utf-8") as f:
-                        content = f.read()
-                    regexcat = '#SERVICE.*?(.*?)\\n#DESCRIPTION (.*?)\\n'
-                    match = re.compile(regexcat).findall(content)
                     nameM3u = get_safe_filename(name).replace(' ', '').lower()
                     FILE_M3U = '%s%s.m3u' % (downloadfree, nameM3u)
-                    if sys.version_info[0] == 3:
-                        WriteBouquet = open(FILE_M3U, 'w', encoding='UTF-8')
-                    else:
-                        WriteBouquet = open(FILE_M3U, 'w')
-                    WriteBouquet.write('#EXTM3U\n')
-                    for url, name in match:
-                        n1 = url.find("http", 0)
-                        if n1 > - 1:
-                            url = url[n1:]
-                            url = url.replace('%3a', ':')
-                            WriteBouquet.write('#EXTINF:-1 tvg-ID="" tvg-name="%s" tvg-logo="" group-title="",%s\n' % (name, name))
-                        n3 = url.find("rtmp", 0)
-                        if n3 > - 1:
-                            url = url[n3:]
-                            url = url.replace('%3a', ':')
-                            WriteBouquet.write('#EXTINF:-1 tvg-ID="" tvg-name="%s" tvg-logo="" group-title="",%s\n' % (name, name))
-                        WriteBouquet.write('%s\n' % url)
-                    f.close()
-                    WriteBouquet.close()
+                    channels = parse_tv(url)
+                    write_m3u(channels, FILE_M3U)
+                    print("Conversione da TV a M3U completata.")
             self.session.open(MessageBox, _('Export Succes'), MessageBox.TYPE_INFO, timeout=8)
+            self.openVi(FILE_M3U)
 
     def keyYellow(self):
         iptv_to_save = lista_bouquet()
