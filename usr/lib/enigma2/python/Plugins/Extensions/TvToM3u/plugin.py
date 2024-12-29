@@ -35,10 +35,11 @@ import codecs
 import glob
 import os
 import re
+
 try:
-    from urllib.parse import unquote, quote
-except:
-    from urlparse import unquote, quote
+    from urllib import unquote, quote  # Python 2
+except ImportError:
+    from urllib.parse import unquote, quote  # Python 3
 
 
 global downloadfree
