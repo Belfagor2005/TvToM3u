@@ -3,19 +3,19 @@
     <eLabel text="Convert TvToM3u Plugin" position="32,-27" size="1350,75" font="cvfont; 46" halign="left" valign="center" backgroundColor="#0000ff" transparent="1" zPosition="5" />
     <widget name="version" position="18,1000" zPosition="3" size="486,75" font="cvfont; 45" backgroundColor="#2518252e" transparent="1" foregroundColor="#ffff00" halign="center" />
     <!-- Text Maintain -->
-    <widget name="text" position="545,816" size="1322,149" font="cvfont;36" halign="left" foregroundColor="#ff00" backgroundColor="#10202020" transparent="1" zPosition="3" />
+    <widget name="status" position="545,816" size="1322,149" font="cvfont;36" halign="left" foregroundColor="#ff00" backgroundColor="#10202020" transparent="1" zPosition="3" />
     <!-- Clock -->
     <widget source="global.CurrentTime" render="Label" position="1472,0" size="391,75" font="cvfont; 46" zPosition="5" foregroundColor="#6bbae9" backgroundColor="#202020" halign="center" transparent="1">
         <convert type="ClockToText">Format %H:%M:%S</convert>
     </widget>
     <!-- Lists -->
-    <widget name="MENU" position="545,377" size="1322,412" foregroundColor="#66ff00" foregroundColorSelected="#ffff00" backgroundColor="#303030" backgroundColorSelected="#002f72" scrollbarMode="showNever" enableWrapAround="1" transparent="1" zPosition="5" />
+    <widget name="list" position="545,377" size="1322,412" foregroundColor="#66ff00" foregroundColorSelected="#ffff00" backgroundColor="#303030" backgroundColorSelected="#002f72" scrollbarMode="showNever" enableWrapAround="1" transparent="1" zPosition="5" />
     <!-- Panel Info -->
     <eLabel text="Press OK : convert select list IPTV to M3U" position="535,1000" zPosition="3" size="1338,75" font="cvfont;45" halign="center" valign="center" foregroundColor="#ffff00" backgroundColor="#ffffff" transparent="1" />
     <!-- Button -->
-    <widget name="Key_Red" position="20,930" size="500,65" font="cvfont; 28" halign="center" valign="center" backgroundColor="#30000000" foregroundColor="#00ffffff" transparent="1" zPosition="1" />
-    <widget name="Key_Green" position="20,860" size="500,65" font="cvfont; 28" halign="center" valign="center" backgroundColor="#30000000" foregroundColor="#00ffffff" transparent="1" zPosition="1" />
-    <widget name="Key_Yellow" position="20,790" size="500,65" font="cvfont; 28" halign="center" valign="center" backgroundColor="#30000000" foregroundColor="#00ffffff" transparent="1" zPosition="1" />
+    <widget name="key_red" position="20,930" size="500,65" font="cvfont; 28" halign="center" valign="center" backgroundColor="#30000000" foregroundColor="#00ffffff" transparent="1" zPosition="1" />
+    <widget name="key_green" position="20,860" size="500,65" font="cvfont; 28" halign="center" valign="center" backgroundColor="#30000000" foregroundColor="#00ffffff" transparent="1" zPosition="1" />
+    <widget name="key_yellow" position="20,790" size="500,65" font="cvfont; 28" halign="center" valign="center" backgroundColor="#30000000" foregroundColor="#00ffffff" transparent="1" zPosition="1" />
     <eLabel backgroundColor="#00ff0000" position="20,992" size="500,6" zPosition="4" />
     <eLabel backgroundColor="#0000ff00" position="20,927" size="500,6" zPosition="4" />
     <eLabel backgroundColor="#00ffff00" position="20,856" size="500,6" zPosition="4" />

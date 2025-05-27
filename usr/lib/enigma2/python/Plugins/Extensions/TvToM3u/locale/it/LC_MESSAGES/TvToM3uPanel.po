@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: corvone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-08 21:00+0200\n"
-"PO-Revision-Date: 2024-07-08 21:00+0200\n"
+"POT-Creation-Date: 2025-05-27 14:54+0200\n"
+"PO-Revision-Date: 2025-05-27 14:54+0200\n"
 "Last-Translator: ))^^(( <>\n"
 "Language-Team: \n"
 "Language: it_IT\n"
@@ -11,49 +11,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SearchPath-0: plugin.py\n"
 
-#: plugin.py:215
-#, fuzzy, python-format
-#| msgid ""
-#| "Select IPTV List and convert to M3U in\n"
-#| "%s\n"
-#| "     by Lululla\n"
-#| "\n"
-#| "     www.corvoboys.com"
+#: plugin.py:296
+#, python-format
 msgid ""
 "Select IPTV List and convert to M3U in\n"
 "%s"
 msgstr ""
 "Seleziona  la lista IPTV nel bouquet e convertila in .M3U in\n"
-"%s\n"
-"     by Lululla\n"
-"\n"
-"     www.corvoboys.com"
+"%s"
 
-#: plugin.py:216
+#: plugin.py:297
 #, python-format
 msgid "Version %s by Lululla"
 msgstr ""
 
-#: plugin.py:217
+#: plugin.py:298
 msgid "Convert"
 msgstr "Esporta"
 
-#: plugin.py:218
+#: plugin.py:299
 msgid "Backup"
 msgstr ""
 
-#: plugin.py:220
+#: plugin.py:300
 msgid "Exit"
 msgstr "Esci"
 
-#: plugin.py:307
+#: plugin.py:374
 msgid "Export Succes"
 msgstr "Esportato con successo"
 
-#: plugin.py:317
+#: plugin.py:382
 msgid "Command Save Send - Check"
 msgstr ""
