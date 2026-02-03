@@ -6,8 +6,8 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import gettext
 import os
 
-PluginLanguageDomain = 'TvToM3uPanel'
-PluginLanguagePath = 'Extensions/TvToM3uPanel/locale'
+PluginLanguageDomain = 'TvToM3u'
+PluginLanguagePath = 'Extensions/TvToM3u/locale'
 
 isDreamOS = False
 if os.path.exists("/var/lib/dpkg/status"):
