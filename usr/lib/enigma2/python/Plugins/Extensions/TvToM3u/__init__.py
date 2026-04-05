@@ -8,7 +8,7 @@ import os
 
 PluginLanguageDomain = 'TvToM3u'
 PluginLanguagePath = 'Extensions/TvToM3u/locale'
-
+__version__ = "2.0"
 isDreamOS = False
 if os.path.exists("/var/lib/dpkg/status"):
     isDreamOS = True

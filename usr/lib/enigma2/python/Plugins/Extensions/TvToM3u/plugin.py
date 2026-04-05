@@ -61,8 +61,8 @@ from . import _, paypal
 
 global downloadfree
 
-Version = '2.0'
-title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % Version
+__version__ = '2.0'
+title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % __version__
 plugin_path = dirname(sys.modules[__name__].__file__)
 res_plugin_path = plugin_path + '/Skin/'
 iconpic = plugin_path + '/plugin.png'
@@ -317,7 +317,7 @@ class TvToM3u(Screen):
         self['text'] = Label(
             _('Select IPTV List and convert to M3U in\n%s') %
             downloadfree)
-        self['version'] = Label(_('Version %s by Lululla' % Version))
+        self['version'] = Label(_('Version %s by Lululla' % __version__))
         self['key_green'] = Label(_('Convert') + ' IPTV %s' % downloadfree)
         self['key_yellow'] = Label(_('Backup') + ' IPTV %s' % downloadfree)
         self['key_red'] = Label(_('Exit'))
