@@ -1,5 +1,16 @@
 # 📺 TvToM3uPanel
 
+![](https://komarev.com/ghpvc/?username=Belfagor2005&label=Repository%20Views&color=blueviolet)
+[![Python package](https://github.com/Belfagor2005/TvToM3u/actions/workflows/pylint.yml/badge.svg)](https://github.com/Belfagor2005/TvToM3u/actions/workflows/pylint.yml)
+[![Ruff Status](https://github.com/Belfagor2005/TvToM3u/actions/workflows/ruff.yml/badge.svg)](https://github.com/Belfagor2005/TvToM3u/actions/workflows/ruff.yml)
+[![Version](https://img.shields.io/badge/Version-2.0-blue.svg)](https://github.com/Belfagor2005/TvToM3u)
+[![Enigma2](https://img.shields.io/badge/Enigma2-Plugin-ff6600.svg)](https://www.enigma2.net)
+[![Python](https://img.shields.io/badge/Python-2.7%2B-blue.svg)](https://www.python.org)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub stars](https://img.shields.io/github/stars/Belfagor2005/TvToM3u?style=social)](https://github.com/Belfagor2005/TvToM3u/stargazers)
+
+
+
 <p align="center">
   <img src="https://github.com/Belfagor2005/TvToM3u/blob/main/usr/lib/enigma2/python/Plugins/Extensions/TvToM3u/plugin.png" height="120">
 </p>
