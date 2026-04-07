@@ -1,6 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, print_function
 
+from Components.Label import Label
+from Components.ActionMap import ActionMap
+from Components.MenuList import MenuList
+from enigma import eLabel
+from Screens.Screen import Screen
+
+from Tools.Directories import fileExists  # , fileReadLines
+from errno import ENOENT
+import skin
+
+from . import _
+
 """
 #########################################################
 #                                                       #
@@ -21,26 +33,7 @@ from __future__ import absolute_import, print_function
 """
 __author__ = "Lululla"
 
-# Components
-from Components.Label import Label
-from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
-from enigma import eLabel
-
-# Screens
-from Screens.Screen import Screen
-
-# Tools
-from Tools.Directories import fileExists  # , fileReadLines
-from errno import ENOENT
-import skin
-
-from . import _
-
 DEFAULT_MODULE_NAME = __name__.split(".")[-1]
-
-# by lululla
-
 
 pname = _("File Commander - Addon")
 pdesc = _("play/show Files")

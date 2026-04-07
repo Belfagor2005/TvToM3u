@@ -3,39 +3,16 @@
 
 from __future__ import absolute_import, print_function
 
-"""
-#########################################################
-#                                                       #
-#  Tv to M3u Panel                                      #
-#  Version: 2.0                                         #
-#  Created by Lululla (https://github.com/Belfagor2005) #
-#  License: CC BY-NC-SA 4.0                             #
-#  https://creativecommons.org/licenses/by-nc-sa/4.0    #
-#  Last Modified: "11:56 - 20250526"                    #
-#                                                       #
-#  Credits:                                             #
-#  - Original concept by Lululla                        #
-#  Usage of this code without proper attribution        #
-#  is strictly prohibited.                              #
-#  For modifications and redistribution,                #
-#  please maintain this credit header.                  #
-#########################################################
-"""
-__author__ = "Lululla"
-
-# Built-in
 import codecs
 import glob
 from os import sys, dirname, exists, basename, join, makedirs, system as os_system
 from re import compile, sub
 
-# Compatibilità Python 2 / 3
 try:
     from urllib import unquote, quote  # Python 2
 except ImportError:
     from urllib.parse import unquote, quote  # Python 3
 
-# Enigma2
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -58,6 +35,26 @@ from enigma import (
 )
 
 from . import _, paypal
+"""
+#########################################################
+#                                                       #
+#  Tv to M3u Panel                                      #
+#  Version: 2.0                                         #
+#  Created by Lululla (https://github.com/Belfagor2005) #
+#  License: CC BY-NC-SA 4.0                             #
+#  https://creativecommons.org/licenses/by-nc-sa/4.0    #
+#  Last Modified: "11:56 - 20250526"                    #
+#                                                       #
+#  Credits:                                             #
+#  - Original concept by Lululla                        #
+#  Usage of this code without proper attribution        #
+#  is strictly prohibited.                              #
+#  For modifications and redistribution,                #
+#  please maintain this credit header.                  #
+#########################################################
+"""
+__author__ = "Lululla"
+
 
 global downloadfree
 
