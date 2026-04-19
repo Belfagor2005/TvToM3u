@@ -4,8 +4,7 @@
 import codecs
 import glob
 import os
-import sys
-from os.path import dirname, exists, basename, join
+from os.path import exists, basename, join
 from os import system as os_system, makedirs
 from re import compile, sub
 from urllib.parse import unquote, quote
