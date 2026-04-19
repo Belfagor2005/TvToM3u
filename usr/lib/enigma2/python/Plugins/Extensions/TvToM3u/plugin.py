@@ -3,7 +3,6 @@
 
 import codecs
 import glob
-import os
 from os.path import exists, basename, join
 from os import system as os_system, makedirs
 from re import compile, sub
