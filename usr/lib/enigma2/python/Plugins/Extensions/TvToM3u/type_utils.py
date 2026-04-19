@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, print_function
 
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -37,7 +36,7 @@ DEFAULT_MODULE_NAME = __name__.split(".")[-1]
 
 pname = _("File Commander - Addon")
 pdesc = _("play/show Files")
-pversion = "1.0-r3"
+pversion = "1.0-r4"
 
 
 def getTextBoundarySize(instance, font, targetSize, text):
@@ -66,22 +65,16 @@ class File_Commander(Screen):
 
     skin = """
         <screen name="File_Commander" position="40,80" size="1900,900" title="Lululla_Commander">
-            <widget name="list_head" position="8,10" size="1850,45" font="Regular;24" foregroundColor="#00fff000" />
-            <widget name="filedata" scrollbarMode="showOnDemand" itemHeight="45" position="9,78" size="1850,725" />
-            <!--
-            <widget name="key_red" position="100,840" size="260,40" transparent="1" font="Regular;24" />
-            <widget name="key_green" position="395,840" size="260,40" transparent="1" font="Regular;24" />
-            <widget name="key_yellow" position="690,840" size="260,40" transparent="1" font="Regular;24" />
-            <widget name="key_blue" position="985,840" size="260,40" transparent="1" font="Regular;24" />
-            -->
-            <widget name="key_red" position="95,820" zPosition="19" size="260,40" transparent="1" font="Regular;24" halign="center" />
-            <widget name="key_green" position="395,820" zPosition="19" size="260,40" transparent="1" font="Regular;24" halign="center" />
-            <widget name="key_yellow" position="690,820" zPosition="19" size="260,40" transparent="1" font="Regular;24" halign="center" />
-            <widget name="key_blue" position="985,820" zPosition="19" size="260,40" transparent="1" font="Regular;24" halign="center" />
-            <ePixmap position="95,865" size="260,25" zPosition="0" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-            <ePixmap position="395,865" size="260,25" zPosition="0" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-            <ePixmap position="690,865" size="260,25" zPosition="0" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-            <ePixmap position="985,870" size="260,25" zPosition="0" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+            <widget name="list_head" position="8,10" size="1850,45" font="Regular;24" foregroundColor="#00fff000" scrollbarMode="showNever" />
+            <widget name="filedata" scrollbarMode="showOnDemand" font="Regular;28" itemHeight="45" position="9,78" size="1850,725" />
+            <widget name="key_red" position="95,830" zPosition="19" size="200,40" transparent="1" font="Regular;24" halign="center" />
+            <widget name="key_green" position="395,830" zPosition="19" size="200,40" transparent="1" font="Regular;24" halign="center" />
+            <widget name="key_yellow" position="687,830" zPosition="19" size="200,40" transparent="1" font="Regular;24" halign="center" />
+            <widget name="key_blue" position="985,830" zPosition="19" size="200,40" transparent="1" font="Regular;24" halign="center" />
+            <ePixmap position="96,865" size="200,25" zPosition="0" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+            <ePixmap position="395,865" size="200,25" zPosition="0" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+            <ePixmap position="690,865" size="200,25" zPosition="0" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+            <ePixmap position="985,870" size="200,25" zPosition="0" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
         </screen>"""
 
     def __init__(self, session, file):

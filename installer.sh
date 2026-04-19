@@ -1,7 +1,7 @@
 #!/bin/bash
 
-version='2.0'
-changelog='\nEnigma2 M3U Converter Bouquet'
+version='2.1'
+changelog='\nEnigma2 M3U Converter Bouquet\nPorting to PY3'
 
 TMPPATH=/tmp/TvToM3u-install
 FILEPATH=/tmp/TvToM3u-main.tar.gz

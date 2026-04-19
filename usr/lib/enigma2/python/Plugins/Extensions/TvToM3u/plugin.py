@@ -1,18 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import, print_function
-
 import codecs
 import glob
-from os import sys, dirname, exists, basename, join, makedirs, system as os_system
+import os
+import sys
+from os.path import dirname, exists, basename, join
+from os import system as os_system, makedirs
 from re import compile, sub
-
-try:
-    from urllib import unquote, quote  # Python 2
-except ImportError:
-    from urllib.parse import unquote, quote  # Python 3
-
+from urllib.parse import unquote, quote
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -34,7 +30,18 @@ from enigma import (
     eListboxPythonMultiContent
 )
 
-from . import _, paypal
+from . import (
+    _,
+    paypal,
+    __version__,
+    title_plug,
+    plugin_path,
+    res_plugin_path,
+    iconpic,
+    tmp_bouquet,
+    new_bouquet
+)
+
 """
 #########################################################
 #                                                       #
@@ -55,16 +62,8 @@ from . import _, paypal
 """
 __author__ = "Lululla"
 
-
 global downloadfree
 
-__version__ = '2.0'
-title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % __version__
-plugin_path = dirname(sys.modules[__name__].__file__)
-res_plugin_path = plugin_path + '/Skin/'
-iconpic = plugin_path + '/plugin.png'
-tmp_bouquet = plugin_path + '/tmp'
-new_bouquet = tmp_bouquet + '/bouquets.tv'
 downloadfree = "/tmp/tvtom3u/"
 
 screenwidth = getDesktop(0).size()
@@ -74,8 +73,6 @@ elif screenwidth.width() == 1920:
     skin_m3up = plugin_path + '/Skin/fhd/'
 else:
     skin_m3up = plugin_path + '/Skin/hd/'
-if exists('/var/lib/dpkg/info'):
-    skin_m3up = skin_m3up + '/dreamOs/'
 
 
 def add_skin_font():
@@ -94,25 +91,23 @@ try:
     downloadfree = defaultMoviePath()
 except BaseException:
     if exists("/usr/bin/apt-get"):
-        downloadfree = ('/media/hdd/movie/')
+        downloadfree = '/media/hdd/movie/'
 
 
 def get_safe_filename(filename, fallback=''):
-    '''Convert filename to safe filename'''
+    '''Convert filename to safe filename (Python 3 version)'''
     import unicodedata
-    import six
+    # Replace spaces and slashes
     name = filename.replace(' ', '_').replace('/', '_')
-    if isinstance(name, six.text_type):
-        name = name.encode('utf-8')
-    name = unicodedata.normalize(
-        'NFKD', six.text_type(
-            name, 'utf_8', errors='ignore')).encode(
-        'ASCII', 'ignore')
-    name = sub(b'[^a-z0-9-_]', b'', name.lower())
+    # Normalize and encode to ASCII (ignore non-ASCII)
+    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
+    # Remove non-alphanumeric, underscore, hyphen
+    name = sub(r'[^a-z0-9-_]', '', name.lower())
+    # Replace multiple underscores with single
     name = sub(r'_+', '_', name).strip('_')
     if not name:
         name = fallback
-    return six.ensure_str(name[:50]) or name
+    return name[:50] or name
 
 
 def write_tv(channels, output_file):
@@ -130,7 +125,7 @@ def parse_tv(file_path):
         match = compile(regexcat).findall(line)
         for url, name in match:
             n1 = url.find("http", 0)
-            if n1 > - 1:
+            if n1 > -1:
                 url = url[n1:]
                 url = url.replace('%3a', ':')
                 channels.append((name, url))
@@ -167,8 +162,8 @@ def print_channel_list(channels):
 
 
 class MenuListSelect(MenuList):
-    def __init__(self, list):
-        MenuList.__init__(self, list, True, eListboxPythonMultiContent)
+    def __init__(self, lst):
+        MenuList.__init__(self, lst, True, eListboxPythonMultiContent)
         if screenwidth.width() == 2560:
             self.l.setFont(0, gFont('Regular', 48))
             self.l.setItemHeight(56)
@@ -182,47 +177,43 @@ class MenuListSelect(MenuList):
 
 def lista_bouquet():
     iptv_list = []
-    f = ''
-    if sys.version_info[0] == 3:
-        f = open(new_bouquet, 'w', encoding='UTF-8')
-    else:
-        f = open(new_bouquet, 'w')
-    f.write('NAME Bouquets (TV)\n')
-    for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
-        usbq = open(iptv_file, 'r', encoding="latin-1").read()
-        usbq_lines = usbq.strip().lower()
-        if 'http' in usbq_lines.strip().lower():
-            if iptv_file not in iptv_list:
-                iptv_list.append(basename(iptv_file))
-                strep_bq = iptv_file.replace('/etc/enigma2/', '')
-                f.write(
-                    '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' +
-                    str(strep_bq) +
-                    '" ORDER BY bouquet' +
-                    '\n')
-                os_system(
-                    'cp -rf /etc/enigma2/' +
-                    str(strep_bq) +
-                    ' ' +
-                    tmp_bouquet)
-    for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
-        usbq = open(iptv_file, 'r', encoding="latin-1").read()
-        usbq_lines = usbq.strip().lower()
-        if 'http' in usbq_lines.strip().lower():
-            if iptv_file not in iptv_list:
-                iptv_list.append(basename(iptv_file))
-                strep_bq = iptv_file.replace('/etc/enigma2/', '')
-                f.write(
-                    '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' +
-                    str(strep_bq) +
-                    '" ORDER BY bouquet' +
-                    '\n')
-                os_system(
-                    'cp -rf /etc/enigma2/' +
-                    str(strep_bq) +
-                    ' ' +
-                    tmp_bouquet)
-    f.close()
+    with open(new_bouquet, 'w', encoding='UTF-8') as f:
+        f.write('NAME Bouquets (TV)\n')
+        for iptv_file in sorted(glob.glob('/etc/enigma2/userbouquet.*.tv')):
+            with open(iptv_file, 'r', encoding="latin-1") as uf:
+                usbq = uf.read()
+            usbq_lines = usbq.strip().lower()
+            if 'http' in usbq_lines:
+                if iptv_file not in iptv_list:
+                    iptv_list.append(basename(iptv_file))
+                    strep_bq = iptv_file.replace('/etc/enigma2/', '')
+                    f.write(
+                        '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' +
+                        str(strep_bq) +
+                        '" ORDER BY bouquet\n')
+                    os_system(
+                        'cp -rf /etc/enigma2/' +
+                        str(strep_bq) +
+                        ' ' +
+                        tmp_bouquet)
+        for iptv_file in sorted(glob.glob('/etc/enigma2/subbouquet.*.tv')):
+            with open(iptv_file, 'r', encoding="latin-1") as uf:
+                usbq = uf.read()
+            usbq_lines = usbq.strip().lower()
+            if 'http' in usbq_lines:
+                if iptv_file not in iptv_list:
+                    iptv_list.append(basename(iptv_file))
+                    strep_bq = iptv_file.replace('/etc/enigma2/', '')
+                    f.write(
+                        '#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "' +
+                        str(strep_bq) +
+                        '" ORDER BY bouquet\n')
+                    os_system(
+                        'cp -rf /etc/enigma2/' +
+                        str(strep_bq) +
+                        ' ' +
+                        tmp_bouquet)
+
     if len(iptv_list) < 0:
         return False
     else:
@@ -239,10 +230,10 @@ class ListSelect:
 
     def readBouquetsList(self, pwd, bouquetname):
         try:
-            f = open(pwd + '/' + bouquetname)
+            f = open(pwd + '/' + bouquetname, encoding='utf-8')
         except Exception as e:
             print(e)
-            return
+            return []
         ret = []
         while True:
             line = f.readline()
@@ -260,7 +251,7 @@ class ListSelect:
                 filename = line
             if filename:
                 try:
-                    fb = open(pwd + '/' + filename)
+                    fb = open(pwd + '/' + filename, encoding='utf-8')
                 except Exception as e:
                     print(str(e))
                     continue
@@ -280,6 +271,7 @@ class ListSelect:
                 else:
                     ret.append([filename, filename])
                 fb.close()
+        f.close()
         return ret
 
     def ReadBouquet(self, pwd):
@@ -330,7 +322,6 @@ class TvToM3u(Screen):
                 "cancel": self.Uscita,
                 "green": self.keyGreen,
                 "yellow": self.keyYellow,
-                # "blue": self.Uscita,
                 "red": self.Uscita
             },
             -1
@@ -338,9 +329,9 @@ class TvToM3u(Screen):
         self.onLayoutFinish.append(self.layoutFinished)
 
     def openVi(self, file):
-        from .type_utils import zEditor
+        from .type_utils import File_Commander
         if fileExists(file):
-            self.session.open(zEditor, file)
+            self.session.open(File_Commander, file)
 
     def layoutFinished(self):
         payp = paypal()
@@ -359,76 +350,50 @@ class TvToM3u(Screen):
             name = name.split('   ')[0]
         except BaseException:
             pass
-        if screenwidth.width() == 2560:  # 1770
+        if screenwidth.width() == 2560:
             res.append(
                 MultiContentEntryPixmapAlphaTest(
-                    pos=(
-                        10, 15), size=(
-                        24, 24), png=loadPNG(icon)))
+                    pos=(10, 15), size=(24, 24), png=loadPNG(icon)))
             res.append(
                 MultiContentEntryText(
-                    pos=(
-                        60,
-                        0),
-                    size=(
-                        1500,
-                        54),
+                    pos=(60, 0),
+                    size=(1500, 54),
                     font=0,
                     text=name,
                     flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-        elif screenwidth.width() == 1920:  # 1335
+        elif screenwidth.width() == 1920:
             res.append(
                 MultiContentEntryPixmapAlphaTest(
-                    pos=(
-                        10, 12), size=(
-                        24, 24), png=loadPNG(icon)))
+                    pos=(10, 12), size=(24, 24), png=loadPNG(icon)))
             res.append(
                 MultiContentEntryText(
-                    pos=(
-                        60,
-                        0),
-                    size=(
-                        1200,
-                        50),
+                    pos=(60, 0),
+                    size=(1200, 50),
                     font=0,
                     text=name,
                     flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
-        else:  # 890
+        else:
             res.append(
                 MultiContentEntryPixmapAlphaTest(
-                    pos=(
-                        10, 9), size=(
-                        24, 24), png=loadPNG(icon)))
+                    pos=(10, 9), size=(24, 24), png=loadPNG(icon)))
             res.append(
                 MultiContentEntryText(
-                    pos=(
-                        60,
-                        0),
-                    size=(
-                        800,
-                        40),
+                    pos=(60, 0),
+                    size=(800, 40),
                     font=0,
                     text=name,
                     flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         res.append(
             MultiContentEntryText(
-                pos=(
-                    0,
-                    0),
-                size=(
-                    0,
-                    0),
+                pos=(0, 0),
+                size=(0, 0),
                 font=0,
                 text=dir,
                 flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
         res.append(
             MultiContentEntryText(
-                pos=(
-                    0,
-                    0),
-                size=(
-                    0,
-                    0),
+                pos=(0, 0),
+                size=(0, 0),
                 font=0,
                 text=value,
                 flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
@@ -442,7 +407,7 @@ class TvToM3u(Screen):
 
     def keyGreen(self):
         url = self['list'].getCurrent()[0][1]
-        if url == -1 or None:
+        if url == -1 or url is None:
             return
         else:
             for dir, name, value in self.ListSelect.TvList():

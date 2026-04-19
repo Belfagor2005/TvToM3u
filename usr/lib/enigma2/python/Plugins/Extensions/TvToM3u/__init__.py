@@ -4,14 +4,20 @@
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 import gettext
+import sys
 import os
+from os.path import dirname
+
+__version__ = "2.1"
+title_plug = '..:: Enigma2 M3U Converter Bouquet V. %s ::..' % __version__
+plugin_path = dirname(sys.modules[__name__].__file__)
+res_plugin_path = plugin_path + '/Skin/'
+iconpic = plugin_path + '/plugin.png'
+tmp_bouquet = plugin_path + '/tmp'
+new_bouquet = tmp_bouquet + '/bouquets.tv'
 
 PluginLanguageDomain = 'TvToM3u'
 PluginLanguagePath = 'Extensions/TvToM3u/locale'
-__version__ = "2.0"
-isDreamOS = False
-if os.path.exists("/var/lib/dpkg/status"):
-    isDreamOS = True
 
 
 def paypal():
@@ -34,12 +40,6 @@ def wanStatus():
 
 
 def localeInit():
-    if isDreamOS:  # check if opendreambox image
-        # getLanguage returns e.g. "fi_FI" for "language_country"
-        lang = language.getLanguage()[:2]
-        # Enigma doesn't set this (or LC_ALL, LC_MESSAGES, LANG). gettext needs
-        # it!
-        os.environ["LANGUAGE"] = lang
     gettext.bindtextdomain(
         PluginLanguageDomain,
         resolveFilename(
@@ -47,16 +47,14 @@ def localeInit():
             PluginLanguagePath))
 
 
-if isDreamOS:  # check if DreamOS image
-    def _(txt): return gettext.dgettext(
-        PluginLanguageDomain, txt) if txt else ""
-else:
-    def _(txt):
-        if gettext.dgettext(PluginLanguageDomain, txt):
-            return gettext.dgettext(PluginLanguageDomain, txt)
-        else:
-            print(("[%s] fallback to default translation for %s" %
-                  (PluginLanguageDomain, txt)))
-            return gettext.gettext(txt)
+def _(txt):
+    if gettext.dgettext(PluginLanguageDomain, txt):
+        return gettext.dgettext(PluginLanguageDomain, txt)
+    else:
+        print(("[%s] fallback to default translation for %s" %
+              (PluginLanguageDomain, txt)))
+        return gettext.gettext(txt)
+
+
 localeInit()
 language.addCallback(localeInit)
