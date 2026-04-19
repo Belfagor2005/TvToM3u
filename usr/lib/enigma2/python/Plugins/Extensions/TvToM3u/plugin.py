@@ -99,7 +99,9 @@ def get_safe_filename(filename, fallback=''):
     # Replace spaces and slashes
     name = filename.replace(' ', '_').replace('/', '_')
     # Normalize and encode to ASCII (ignore non-ASCII)
-    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
+    name = unicodedata.normalize(
+        'NFKD', name).encode(
+        'ascii', 'ignore').decode('ascii')
     # Remove non-alphanumeric, underscore, hyphen
     name = sub(r'[^a-z0-9-_]', '', name.lower())
     # Replace multiple underscores with single
