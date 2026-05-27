@@ -1,0 +1,51 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:53+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Japanese <translation-team-ja@lists.sourceforge.net>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Backup"
+msgstr "バックアップ"
+
+msgid "Command Save Send - Check"
+msgstr "コマンド 保存 送信 - チェック"
+
+msgid "Convert"
+msgstr "変換する"
+
+msgid "Del Line"
+msgstr "デルライン"
+
+msgid "Exit"
+msgstr "出口"
+
+msgid "Export Succes"
+msgstr "エクスポートの成功"
+
+msgid "File Commander - Addon"
+msgstr "ファイルコマンダー - アドオン"
+
+msgid "Ins Line"
+msgstr "インスライン"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Version %s by Lululla"
+msgstr "バージョン %s by ルルラ"
+
+msgid "play/show Files"
+msgstr "ファイルの再生/表示"

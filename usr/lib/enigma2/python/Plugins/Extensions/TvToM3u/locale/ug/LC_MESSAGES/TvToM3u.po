@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:58+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Uighur\n"
+"Language: ug\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "زاپاسلاش"
+
+msgid "Command Save Send - Check"
+msgstr "ئەۋەتىش بۇيرۇقىنى ساقلاش - تەكشۈرۈش"
+
+msgid "Convert"
+msgstr "ئايلاندۇرۇش"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "چىقىش"
+
+msgid "Export Succes"
+msgstr "ئېكسپورت مۇۋەپپەقىيەتلىرى"
+
+msgid "File Commander - Addon"
+msgstr "ھۆججەت قوماندانى - Addon"
+
+msgid "Ins Line"
+msgstr ""
+
+msgid "Save"
+msgstr "ساقلاش"
+
+msgid "Version %s by Lululla"
+msgstr "Lululla نىڭ% s نەشرى"
+
+msgid "play/show Files"
+msgstr "ھۆججەتلەرنى كۆرسىتىش / كۆرسىتىش"

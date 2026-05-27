@@ -1,0 +1,51 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:52+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Backup"
+msgstr "Biztonsági mentés"
+
+msgid "Command Save Send - Check"
+msgstr "Parancs Mentés Küldés – Ellenőrizze"
+
+msgid "Convert"
+msgstr "Megtérít"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Kijárat"
+
+msgid "Export Succes"
+msgstr "Siker exportálás"
+
+msgid "File Commander - Addon"
+msgstr ""
+
+msgid "Ins Line"
+msgstr ""
+
+msgid "Save"
+msgstr "Megtakarítás"
+
+msgid "Version %s by Lululla"
+msgstr "Lululla %s verziója"
+
+msgid "play/show Files"
+msgstr "Fájlok lejátszása/megjelenítése"

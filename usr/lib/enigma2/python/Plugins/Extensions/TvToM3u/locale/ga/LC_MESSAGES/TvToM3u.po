@@ -1,0 +1,51 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:51+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n==2 ? 1 : 2;\n"
+
+msgid "Backup"
+msgstr "Cúltaca"
+
+msgid "Command Save Send - Check"
+msgstr "Ordú Sábháil Seol - Seiceáil"
+
+msgid "Convert"
+msgstr "Tiontaigh"
+
+msgid "Del Line"
+msgstr "Del Líne"
+
+msgid "Exit"
+msgstr "Scoir"
+
+msgid "Export Succes"
+msgstr "Easpórtáil Rath"
+
+msgid "File Commander - Addon"
+msgstr "Comhad Ceannasaí - Addon"
+
+msgid "Ins Line"
+msgstr "Líne Ins"
+
+msgid "Save"
+msgstr "Sábháil"
+
+msgid "Version %s by Lululla"
+msgstr "Leagan %s le Luulla"
+
+msgid "play/show Files"
+msgstr "Seinn / Taispeáin Comhaid"

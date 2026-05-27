@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:50+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Welsh\n"
+"Language: cy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "Wrth gefn"
+
+msgid "Command Save Send - Check"
+msgstr "Command Save Anfon - Gwiriwch"
+
+msgid "Convert"
+msgstr "Trosi"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Ymadael"
+
+msgid "Export Succes"
+msgstr "Llwyddiannau Allforio"
+
+msgid "File Commander - Addon"
+msgstr "File Comander - Addon"
+
+msgid "Ins Line"
+msgstr "Llinell Ins"
+
+msgid "Save"
+msgstr "Arbed"
+
+msgid "Version %s by Lululla"
+msgstr "Fersiwn %s gan Luulla"
+
+msgid "play/show Files"
+msgstr "chwarae/dangos Ffeiliau"

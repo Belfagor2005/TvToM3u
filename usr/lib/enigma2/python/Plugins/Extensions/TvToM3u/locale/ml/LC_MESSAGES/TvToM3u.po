@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:54+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Malayalam <smc-discuss@googlegroups.com>\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "ബാക്കപ്പ്"
+
+msgid "Command Save Send - Check"
+msgstr "കമാൻഡ് സേവ് അയക്കുക - പരിശോധിക്കുക"
+
+msgid "Convert"
+msgstr "പരിവർത്തനം ചെയ്യുക"
+
+msgid "Del Line"
+msgstr "ഡെൽ ലൈൻ"
+
+msgid "Exit"
+msgstr "പുറത്ത്"
+
+msgid "Export Succes"
+msgstr "കയറ്റുമതി വിജയങ്ങൾ"
+
+msgid "File Commander - Addon"
+msgstr "ഫയൽ കമാൻഡർ - ആഡോൺ"
+
+msgid "Ins Line"
+msgstr "ഇൻസ് ലൈൻ"
+
+msgid "Save"
+msgstr "സംരക്ഷിക്കുക"
+
+msgid "Version %s by Lululla"
+msgstr "ലുലുല്ലയുടെ %s പതിപ്പ്"
+
+msgid "play/show Files"
+msgstr "ഫയലുകൾ പ്ലേ ചെയ്യുക/കാണിക്കുക"

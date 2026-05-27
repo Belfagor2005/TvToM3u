@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:48+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Afrikaans <i18n@af.org.za>\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "Rugsteun"
+
+msgid "Command Save Send - Check"
+msgstr "Opdrag Stoor Stuur - Kontroleer"
+
+msgid "Convert"
+msgstr "Skakel om"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Verlaat"
+
+msgid "Export Succes"
+msgstr "Uitvoer suksesse"
+
+msgid "File Commander - Addon"
+msgstr "Lêerbevelvoerder - Addon"
+
+msgid "Ins Line"
+msgstr "Ins lyn"
+
+msgid "Save"
+msgstr "Stoor"
+
+msgid "Version %s by Lululla"
+msgstr "Weergawe %s deur Lululla"
+
+msgid "play/show Files"
+msgstr "speel/wys lêers"

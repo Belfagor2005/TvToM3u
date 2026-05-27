@@ -1,0 +1,51 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:53+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "Backup"
+msgstr "Atsarginė kopija"
+
+msgid "Command Save Send - Check"
+msgstr "Komanda Išsaugoti Siųsti – Patikrinkite"
+
+msgid "Convert"
+msgstr "Konvertuoti"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Išeiti"
+
+msgid "Export Succes"
+msgstr "Eksporto sėkmė"
+
+msgid "File Commander - Addon"
+msgstr "Failų vadas – priedas"
+
+msgid "Ins Line"
+msgstr ""
+
+msgid "Save"
+msgstr "Išsaugoti"
+
+msgid "Version %s by Lululla"
+msgstr "%s versija, kurią sukūrė Lululla"
+
+msgid "play/show Files"
+msgstr "žaisti / rodyti failus"

@@ -1,0 +1,51 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:50+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Estonian <linux-ee@lists.eenet.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Backup"
+msgstr "Varundamine"
+
+msgid "Command Save Send - Check"
+msgstr "Käsk Salvesta Saada – kontrollige"
+
+msgid "Convert"
+msgstr "Teisenda"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Välju"
+
+msgid "Export Succes"
+msgstr "Ekspordi edu"
+
+msgid "File Commander - Addon"
+msgstr "Failiülem – lisand"
+
+msgid "Ins Line"
+msgstr ""
+
+msgid "Save"
+msgstr "Salvesta"
+
+msgid "Version %s by Lululla"
+msgstr "Lululla versioon %s"
+
+msgid "play/show Files"
+msgstr "esita/näita faile"

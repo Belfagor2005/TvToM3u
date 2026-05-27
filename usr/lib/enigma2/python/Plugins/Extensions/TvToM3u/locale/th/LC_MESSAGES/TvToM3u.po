@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:57+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Thai <(nothing)>\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "สำรองข้อมูล"
+
+msgid "Command Save Send - Check"
+msgstr "คำสั่งบันทึกส่ง-ตรวจสอบ"
+
+msgid "Convert"
+msgstr "แปลง"
+
+msgid "Del Line"
+msgstr "เดล ไลน์"
+
+msgid "Exit"
+msgstr "ออก"
+
+msgid "Export Succes"
+msgstr "ความสำเร็จในการส่งออก"
+
+msgid "File Commander - Addon"
+msgstr "ผู้บัญชาการไฟล์ - Addon"
+
+msgid "Ins Line"
+msgstr "อินไลน์"
+
+msgid "Save"
+msgstr "บันทึก"
+
+msgid "Version %s by Lululla"
+msgstr "เวอร์ชัน %s โดย Lululla"
+
+msgid "play/show Files"
+msgstr "เล่น/แสดงไฟล์"

@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:52+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "Afritun"
+
+msgid "Command Save Send - Check"
+msgstr "Skipun Vista Senda - Athugaðu"
+
+msgid "Convert"
+msgstr "Umbreyta"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Hætta"
+
+msgid "Export Succes"
+msgstr "Útflutningur heppnast"
+
+msgid "File Commander - Addon"
+msgstr "Skráarforingi - viðbót"
+
+msgid "Ins Line"
+msgstr ""
+
+msgid "Save"
+msgstr "Vista"
+
+msgid "Version %s by Lululla"
+msgstr "Útgáfa %s eftir Lululla"
+
+msgid "play/show Files"
+msgstr "spila/sýna skrár"

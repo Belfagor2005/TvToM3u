@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:53+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Central Khmer\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "បម្រុងទុក"
+
+msgid "Command Save Send - Check"
+msgstr "ពាក្យបញ្ជារក្សាទុកផ្ញើ - ពិនិត្យ"
+
+msgid "Convert"
+msgstr "បម្លែង"
+
+msgid "Del Line"
+msgstr "បន្ទាត់ Del"
+
+msgid "Exit"
+msgstr "ចេញ"
+
+msgid "Export Succes"
+msgstr "នាំចេញជោគជ័យ"
+
+msgid "File Commander - Addon"
+msgstr "មេបញ្ជាការឯកសារ - Addon"
+
+msgid "Ins Line"
+msgstr "បន្ទាត់ Ins"
+
+msgid "Save"
+msgstr "រក្សាទុក"
+
+msgid "Version %s by Lululla"
+msgstr "កំណែ %s ដោយ Lululla"
+
+msgid "play/show Files"
+msgstr "លេង / បង្ហាញឯកសារ"

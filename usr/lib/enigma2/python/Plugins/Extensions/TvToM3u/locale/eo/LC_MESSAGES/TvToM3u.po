@@ -1,0 +1,51 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:50+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Backup"
+msgstr "Rezervo"
+
+msgid "Command Save Send - Check"
+msgstr ""
+
+msgid "Convert"
+msgstr "Konverti"
+
+msgid "Del Line"
+msgstr "Del Linio"
+
+msgid "Exit"
+msgstr "Eliro"
+
+msgid "Export Succes"
+msgstr "Eksporto Sukceso"
+
+msgid "File Commander - Addon"
+msgstr "Dosiera Komandanto - Aldono"
+
+msgid "Ins Line"
+msgstr "Ins Linio"
+
+msgid "Save"
+msgstr "Konservu"
+
+msgid "Version %s by Lululla"
+msgstr "Versio %s de Lululla"
+
+msgid "play/show Files"
+msgstr ""

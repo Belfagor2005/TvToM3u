@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:51+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Scottish Gaelic <fios@foramnagaidhlig.net>\n"
+"Language: gd\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "Cùl-taic"
+
+msgid "Command Save Send - Check"
+msgstr "Command Save Sen - Thoir sùil"
+
+msgid "Convert"
+msgstr "Tionndadh"
+
+msgid "Del Line"
+msgstr "Loidhne Del"
+
+msgid "Exit"
+msgstr "Ar-a-mach"
+
+msgid "Export Succes"
+msgstr "Soirbheachas às-mhalairt"
+
+msgid "File Commander - Addon"
+msgstr ""
+
+msgid "Ins Line"
+msgstr "Loidhne a-staigh"
+
+msgid "Save"
+msgstr "Sàbhail"
+
+msgid "Version %s by Lululla"
+msgstr "Tionndadh %s le Luulla"
+
+msgid "play/show Files"
+msgstr "cluich / seall Faidhlichean"

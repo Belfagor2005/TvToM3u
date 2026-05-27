@@ -1,0 +1,50 @@
+# TvToM3u translations
+# Copyright (C) 2025 Lululla Team
+# This file is distributed under the same license as the Lululla package.
+# [lululla] <ekekaz@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: TvToM3u\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-05-27 20:57+0000\n"
+"Last-Translator:  <EMAIL@ADDRESS>\n"
+"Language-Team: Swahili <(nothing)>\n"
+"Language: sw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Backup"
+msgstr "Hifadhi nakala"
+
+msgid "Command Save Send - Check"
+msgstr "Amri Hifadhi Tuma - Angalia"
+
+msgid "Convert"
+msgstr "Geuza"
+
+msgid "Del Line"
+msgstr ""
+
+msgid "Exit"
+msgstr "Utgång"
+
+msgid "Export Succes"
+msgstr "Hamisha Mafanikio"
+
+msgid "File Commander - Addon"
+msgstr "Kamanda wa faili - Addon"
+
+msgid "Ins Line"
+msgstr ""
+
+msgid "Save"
+msgstr "Hifadhi"
+
+msgid "Version %s by Lululla"
+msgstr "Toleo la %s la Lululla"
+
+msgid "play/show Files"
+msgstr "cheza/onyesha Faili"
