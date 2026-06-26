@@ -47,4 +47,4 @@ msgid "Version %s by Lululla"
 msgstr "Versió %s de Lululla"
 
 msgid "play/show Files"
-msgstr ""
+msgstr "reproduir/mostrar fitxers"

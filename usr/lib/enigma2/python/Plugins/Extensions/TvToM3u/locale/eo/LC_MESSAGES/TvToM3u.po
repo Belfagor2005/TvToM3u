@@ -21,7 +21,7 @@ msgid "Backup"
 msgstr "Rezervo"
 
 msgid "Command Save Send - Check"
-msgstr ""
+msgstr "Komando Konservi Sendi - Kontrolu"
 
 msgid "Convert"
 msgstr "Konverti"
@@ -48,4 +48,4 @@ msgid "Version %s by Lululla"
 msgstr "Versio %s de Lululla"
 
 msgid "play/show Files"
-msgstr ""
+msgstr "ludi/montri dosierojn"

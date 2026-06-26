@@ -20,7 +20,7 @@ msgid "Backup"
 msgstr "Babeskopia"
 
 msgid "Command Save Send - Check"
-msgstr ""
+msgstr "Agindua Gorde Bidali - Egiaztatu"
 
 msgid "Convert"
 msgstr "Bihurtu"
@@ -32,7 +32,7 @@ msgid "Exit"
 msgstr "Irten"
 
 msgid "Export Succes"
-msgstr ""
+msgstr "Esportatu arrakasta"
 
 msgid "File Commander - Addon"
 msgstr "File Commander - Gehigarria"
@@ -44,7 +44,7 @@ msgid "Save"
 msgstr "Gorde"
 
 msgid "Version %s by Lululla"
-msgstr ""
+msgstr "Lululla-ren %s bertsioa"
 
 msgid "play/show Files"
 msgstr "erreproduzitu/erakutsi Fitxategiak"

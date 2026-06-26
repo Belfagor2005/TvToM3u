@@ -38,7 +38,7 @@ msgid "File Commander - Addon"
 msgstr "Файлын командлагч - Нэмэлт"
 
 msgid "Ins Line"
-msgstr ""
+msgstr "Ins шугам"
 
 msgid "Save"
 msgstr "Хадгалах"
